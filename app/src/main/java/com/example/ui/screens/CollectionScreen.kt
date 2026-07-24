@@ -32,12 +32,14 @@ import com.example.ui.theme.*
 fun CollectionScreen(
     cards: List<CardEntity>,
     onUpgradeCard: (CardEntity) -> Unit,
+    onTranscendCard: (CardEntity) -> Unit = {},
     onAddToDeck: (CardEntity) -> Unit,
     modifier: Modifier = Modifier
 ) {
     CardCollectionScreen(
         cards = cards,
         onUpgradeCard = onUpgradeCard,
+        onTranscendCard = onTranscendCard,
         onAddToDeck = onAddToDeck,
         modifier = modifier
     )

@@ -9,6 +9,8 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
+import org.json.JSONArray
+import org.json.JSONObject
 
 data class EnemyModel(
     val name: String,
@@ -898,6 +900,172 @@ class ArcanumViewModel(application: Application) : AndroidViewModel(application)
         viewModelScope.launch {
             repository.clearDiary()
             showToast("Дневник очищен")
+        }
+    }
+
+    fun transcendCard(card: CardEntity) {
+        val nextRarity = when (card.rarity.lowercase()) {
+            "common" -> "uncommon"
+            "uncommon" -> "rare"
+            "rare" -> "epic"
+            "epic" -> "legendary"
+            "legendary" -> "mythic"
+            else -> null
+        }
+        if (nextRarity == null) {
+            showToast("Карта уже имеет мифический статус!")
+            return
+        }
+        val cost = 300 * card.level
+        if (playerStats.value.gold < cost) {
+            showToast("Необходимо $cost ◉ золота для эволюции")
+            return
+        }
+
+        viewModelScope.launch {
+            repository.updatePlayerStats(playerStats.value.copy(gold = playerStats.value.gold - cost))
+            val evolved = card.copy(
+                rarity = nextRarity,
+                hp = card.hp + 30,
+                str = card.str + 10,
+                def = card.def + 8,
+                abilityValue = (card.abilityValue * 1.3).toInt()
+            )
+            repository.insertCard(evolved)
+            soundManager.playVictory()
+            addDiaryEntry("reward", "✨", "Эволюция карты \"${card.name}\" → ${nextRarity.uppercase()}")
+            showToast("✨ Эволюция! \"${card.name}\" → ${nextRarity.uppercase()}")
+            checkAchievementsAndQuests()
+        }
+    }
+
+    fun exportSaveDataJson(): String {
+        return try {
+            val stats = playerStats.value
+            val root = JSONObject()
+
+            val pObj = JSONObject()
+            pObj.put("level", stats.level)
+            pObj.put("xp", stats.xp)
+            pObj.put("gold", stats.gold)
+            pObj.put("hp", stats.hp)
+            pObj.put("hpMax", stats.hpMax)
+            pObj.put("mp", stats.mp)
+            pObj.put("mpMax", stats.mpMax)
+            pObj.put("str", stats.str)
+            pObj.put("def", stats.def)
+            pObj.put("battlesWon", stats.battlesWon)
+            pObj.put("battlesLost", stats.battlesLost)
+            pObj.put("crafted", stats.crafted)
+            pObj.put("chestsOpened", stats.chestsOpened)
+            pObj.put("visitedLocations", stats.visitedLocations)
+            root.put("player", pObj)
+
+            val cardsArr = JSONArray()
+            cards.value.forEach { c ->
+                val cObj = JSONObject()
+                cObj.put("id", c.id)
+                cObj.put("name", c.name)
+                cObj.put("type", c.type)
+                cObj.put("rarity", c.rarity)
+                cObj.put("hp", c.hp)
+                cObj.put("mp", c.mp)
+                cObj.put("str", c.str)
+                cObj.put("def", c.def)
+                cObj.put("level", c.level)
+                cObj.put("desc", c.desc)
+                cObj.put("art", c.art)
+                cObj.put("abilityName", c.abilityName ?: "")
+                cObj.put("abilityType", c.abilityType ?: "")
+                cObj.put("abilityValue", c.abilityValue)
+                cObj.put("abilityCost", c.abilityCost)
+                cardsArr.put(cObj)
+            }
+            root.put("cards", cardsArr)
+
+            val invArr = JSONArray()
+            inventory.value.forEach { i ->
+                val iObj = JSONObject()
+                iObj.put("id", i.id)
+                iObj.put("name", i.name)
+                iObj.put("count", i.count)
+                iObj.put("art", i.art)
+                invArr.put(iObj)
+            }
+            root.put("inventory", invArr)
+
+            root.toString(2)
+        } catch (e: Exception) {
+            "{}"
+        }
+    }
+
+    fun importSaveDataJson(jsonStr: String): Boolean {
+        return try {
+            val root = JSONObject(jsonStr)
+            if (root.has("player")) {
+                val pObj = root.getJSONObject("player")
+                val curr = playerStats.value
+                val newStats = curr.copy(
+                    level = pObj.optInt("level", curr.level),
+                    xp = pObj.optInt("xp", curr.xp),
+                    gold = pObj.optInt("gold", curr.gold),
+                    hp = pObj.optInt("hp", curr.hp),
+                    hpMax = pObj.optInt("hpMax", curr.hpMax),
+                    mp = pObj.optInt("mp", curr.mp),
+                    mpMax = pObj.optInt("mpMax", curr.mpMax),
+                    str = pObj.optInt("str", curr.str),
+                    def = pObj.optInt("def", curr.def),
+                    battlesWon = pObj.optInt("battlesWon", curr.battlesWon),
+                    battlesLost = pObj.optInt("battlesLost", curr.battlesLost),
+                    crafted = pObj.optInt("crafted", curr.crafted),
+                    chestsOpened = pObj.optInt("chestsOpened", curr.chestsOpened),
+                    visitedLocations = pObj.optString("visitedLocations", curr.visitedLocations)
+                )
+                viewModelScope.launch {
+                    repository.updatePlayerStats(newStats)
+                }
+            }
+
+            if (root.has("cards")) {
+                val cardsArr = root.getJSONArray("cards")
+                val newCards = mutableListOf<CardEntity>()
+                for (idx in 0 until cardsArr.length()) {
+                    val cObj = cardsArr.getJSONObject(idx)
+                    newCards.add(
+                        CardEntity(
+                            id = cObj.optString("id", UUID.randomUUID().toString()),
+                            name = cObj.optString("name", "Импортированная Карта"),
+                            type = cObj.optString("type", "hero"),
+                            rarity = cObj.optString("rarity", "rare"),
+                            hp = cObj.optInt("hp", 80),
+                            mp = cObj.optInt("mp", 20),
+                            str = cObj.optInt("str", 15),
+                            def = cObj.optInt("def", 8),
+                            level = cObj.optInt("level", 1),
+                            desc = cObj.optString("desc", ""),
+                            art = cObj.optString("art", "warrior"),
+                            abilityName = cObj.optString("abilityName", "Удар"),
+                            abilityType = cObj.optString("abilityType", "damage"),
+                            abilityValue = cObj.optInt("abilityValue", 20),
+                            abilityCost = cObj.optInt("abilityCost", 10)
+                        )
+                    )
+                }
+                if (newCards.isNotEmpty()) {
+                    viewModelScope.launch {
+                        newCards.forEach { repository.insertCard(it) }
+                    }
+                }
+            }
+
+            soundManager.playVictory()
+            showToast("✓ Сохранение импортировано!")
+            addDiaryEntry("system", "📥", "Импортированы данные сохранения JSON")
+            true
+        } catch (e: Exception) {
+            showToast("Ошибка импорта JSON сохранения")
+            false
         }
     }
 

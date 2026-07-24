@@ -103,11 +103,11 @@ fun HomeScreen(
             elevation = CardDefaults.cardElevation(8.dp),
             modifier = Modifier
                 .fillMaxWidth()
-                .height(180.dp)
+                .height(190.dp)
         ) {
             Box(modifier = Modifier.fillMaxSize()) {
                 Image(
-                    painter = painterResource(id = R.drawable.img_hero_banner),
+                    painter = painterResource(id = R.drawable.img_arcanum_hero),
                     contentDescription = "Arcanum Hero Banner",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier.fillMaxSize()
@@ -117,7 +117,7 @@ fun HomeScreen(
                         .fillMaxSize()
                         .background(
                             Brush.verticalGradient(
-                                colors = listOf(Color.Transparent, Color.Black.copy(alpha = 0.8f))
+                                colors = listOf(Color.Transparent, Color.Black.copy(alpha = 0.85f))
                             )
                         )
                 )
@@ -127,6 +127,20 @@ fun HomeScreen(
                         .padding(16.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
+                    Surface(
+                        color = Color(0xCC111218),
+                        shape = RoundedCornerShape(12.dp),
+                        border = BorderStroke(1.dp, GoldAccent.copy(alpha = 0.6f)),
+                        modifier = Modifier.padding(bottom = 6.dp)
+                    ) {
+                        Text(
+                            text = "⚡ РЕЙД БОСС: МИФИЧЕСКИЙ ДРАКОН БЕЗДНЫ ⚡",
+                            fontSize = 10.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = GoldLight,
+                            modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp)
+                        )
+                    }
                     Text(
                         text = "ARCANUM",
                         fontSize = 32.sp,
@@ -135,8 +149,8 @@ fun HomeScreen(
                         letterSpacing = 4.sp
                     )
                     Text(
-                        text = "HYBRID CARD MMORPG",
-                        fontSize = 12.sp,
+                        text = "HYBRID CARD MMORPG & PWA ENGINE",
+                        fontSize = 11.sp,
                         fontWeight = FontWeight.SemiBold,
                         color = GoldAccent,
                         letterSpacing = 2.sp

@@ -284,7 +284,10 @@
           Синхронизировано с системой сохранения PWA LocalStorage.
         </p>
         <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 12px;">
-          <button class="btn-action" style="background: var(--gold-accent); color: black; font-weight: 800;" onclick="showOnboardingModal()">✨ Открыть Обучение (Карусель)</button>
+          <a href="arcanum.apk" download class="btn-action" style="background: linear-gradient(135deg, #d4af37, #996515); color: black; font-weight: 800; text-decoration: none; text-align: center; display: block;">📲 Скачать APK (Android Приложение)</a>
+          <button class="btn-action" style="background: var(--gold-accent); color: black; font-weight: 800;" onclick="exportPwaSaveJson()">📤 Экспорт Сохранения JSON</button>
+          <button class="btn-action" style="background: var(--purple-accent); color: white; font-weight: 800;" onclick="importPwaSaveJson()">📥 Импорт Сохранения JSON</button>
+          <button class="btn-action" style="background: var(--gold-accent); color: black;" onclick="showOnboardingModal()">✨ Открыть Обучение (Карусель)</button>
           <button class="btn-action" style="background: #2980b9; color: white;" onclick="toggleFullscreen()">📺 Полноэкранный Режим</button>
           <button class="btn-action" style="background: var(--purple-accent); color: white;" onclick="toggleSound()">🔊 Переключить Звуковые Эффекты</button>
           <button class="btn-action" onclick="saveGame(); showToast('Сохранение завершено!');">💾 Сохранить Игру</button>

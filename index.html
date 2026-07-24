@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Arcanum - Card MMORPG & PWA</title>
+  <meta name="description" content="Коллекционная карточная MMORPG с пошаговыми боями, крафтом и онлайн PWA версией">
+  <meta http-equiv="refresh" content="0; url=app/src/main/assets/pwa/index.html">
+  <style>
+    :root {
+      --bg-dark: #0d0e12;
+      --bg-card: #181a20;
+      --gold-accent: #c5a059;
+      --gold-light: #f3e5ab;
+      --gold-glow: rgba(197, 160, 89, 0.4);
+      --text-main: #e2e8f0;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at center, #1a1c24 0%, var(--bg-dark) 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 480px;
+      width: 100%;
+      background: var(--bg-card);
+      border: 2px solid var(--gold-accent);
+      border-radius: 20px;
+      padding: 32px 24px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), 0 0 15px var(--gold-glow);
+    }
+
+    .logo-icon {
+      font-size: 64px;
+      margin-bottom: 12px;
+      display: inline-block;
+      animation: pulse 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px var(--gold-accent)); }
+      50% { transform: scale(1.08); filter: drop-shadow(0 0 20px var(--gold-accent)); }
+    }
+
+    h1 {
+      color: var(--gold-light);
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .subtitle {
+      color: var(--gold-accent);
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: var(--text-muted);
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #d4af37, #996515);
+      color: #000;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--gold-light);
+      border: 1px solid var(--gold-accent);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(197, 160, 89, 0.2);
+    }
+
+    .apk-notice {
+      margin-top: 18px;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 10px;
+      font-size: 11px;
+      color: #888;
+      line-height: 1.4;
+    }
+  </style>
+  <script>
+    // Immediate redirect if accessed directly
+    if (window.location.pathname.endsWith('/') || window.location.pathname.endsWith('/index.html')) {
+      var targetPwaPath = 'app/src/main/assets/pwa/index.html';
+      // Only redirect if we are not on the standalone deployed PWA root
+      fetch(targetPwaPath, { method: 'HEAD' }).then(function(res) {
+        if (res.ok) {
+          window.location.replace(targetPwaPath);
+        }
+      }).catch(function() {
+        // Already at PWA root or standalone
+      });
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="logo-icon">🔮</div>
+    <h1>ARCANUM</h1>
+    <div class="subtitle">Card MMORPG & PWA Engine</div>
+    <p>Загрузка игровой браузерной PWA-версии... Если перенаправление не произошло автоматически, нажмите кнопку ниже.</p>
+
+    <div class="btn-group">
+      <a href="app/src/main/assets/pwa/index.html" class="btn btn-primary">
+        🎮 Запустить PWA Игру
+      </a>
+      <a href="arcanum.apk" download class="btn btn-secondary" id="apkDownloadLink">
+        📲 Скачать Android APK
+      </a>
+    </div>
+
+    <div class="apk-notice">
+      💡 Для установки APK на Android разрешите "Установку из неизвестных источников" в настройках браузера.
+    </div>
+  </div>
+</body>
+</html>

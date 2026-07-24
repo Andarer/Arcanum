@@ -47,6 +47,7 @@ fun CardCollectionScreen(
     cards: List<CardEntity>,
     onCardClick: (CardEntity) -> Unit = {},
     onUpgradeCard: (CardEntity) -> Unit = {},
+    onTranscendCard: (CardEntity) -> Unit = {},
     onAddToDeck: (CardEntity) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
@@ -259,6 +260,10 @@ fun CardCollectionScreen(
                 onUpgradeCard(card)
                 selectedCardForDetail = null
             },
+            onTranscend = {
+                onTranscendCard(card)
+                selectedCardForDetail = null
+            },
             onAddToDeck = {
                 onAddToDeck(card)
                 selectedCardForDetail = null
@@ -418,6 +423,7 @@ fun CollectibleCardDetailModal(
     card: CardEntity,
     onDismiss: () -> Unit,
     onUpgrade: () -> Unit,
+    onTranscend: () -> Unit = {},
     onAddToDeck: () -> Unit
 ) {
     val rarityColor = getRarityColor(card.rarity)
@@ -546,7 +552,35 @@ fun CollectibleCardDetailModal(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                // Action Buttons
+                // Action Buttons Row 1
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Button(
+                        onClick = onUpgrade,
+                        colors = ButtonDefaults.buttonColors(containerColor = GoldAccent),
+                        shape = RoundedCornerShape(12.dp),
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text("⬆ Уровень (${(card.level + 1) * 50}◉)", fontSize = 10.sp, fontWeight = FontWeight.Bold, color = Color.Black)
+                    }
+
+                    if (!card.rarity.equals("mythic", ignoreCase = true)) {
+                        Button(
+                            onClick = onTranscend,
+                            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD4AF37)),
+                            shape = RoundedCornerShape(12.dp),
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text("✨ Эволюция (${card.level * 300}◉)", fontSize = 10.sp, fontWeight = FontWeight.Bold, color = Color.Black)
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                // Action Buttons Row 2
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -558,15 +592,6 @@ fun CollectibleCardDetailModal(
                         modifier = Modifier.weight(1f)
                     ) {
                         Text("Закрыть", fontSize = 11.sp, color = Color.White)
-                    }
-
-                    Button(
-                        onClick = onUpgrade,
-                        colors = ButtonDefaults.buttonColors(containerColor = GoldAccent),
-                        shape = RoundedCornerShape(12.dp),
-                        modifier = Modifier.weight(1f)
-                    ) {
-                        Text("⬆ Улучшить", fontSize = 11.sp, fontWeight = FontWeight.Bold, color = Color.Black)
                     }
 
                     Button(

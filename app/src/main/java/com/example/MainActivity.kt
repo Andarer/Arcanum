@@ -233,6 +233,7 @@ fun ArcanumApp(viewModel: ArcanumViewModel) {
                 CollectionScreen(
                     cards = cards,
                     onUpgradeCard = { card -> viewModel.upgradeCard(card) },
+                    onTranscendCard = { card -> viewModel.transcendCard(card) },
                     onAddToDeck = { card -> viewModel.addToDeck(card) }
                 )
             }
@@ -375,6 +376,8 @@ fun ArcanumApp(viewModel: ArcanumViewModel) {
                     onToggleTheme = { viewModel.toggleTheme() },
                     onToggleSound = { viewModel.toggleSound() },
                     onResetAllData = { viewModel.resetAllData() },
+                    onExportSave = { viewModel.exportSaveDataJson() },
+                    onImportSave = { json -> viewModel.importSaveDataJson(json) },
                     onOpenPwa = { navController.navigate("pwa") }
                 )
             }

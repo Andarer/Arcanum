@@ -888,6 +888,33 @@ function nextOnboardingSlide() {
   }
 }
 
+function exportPwaSaveJson() {
+  const jsonStr = JSON.stringify(gameState, null, 2);
+  navigator.clipboard.writeText(jsonStr).then(() => {
+    showToast("📋 Сохранение скопировано в буфер обмена!");
+  }).catch(() => {
+    prompt("Скопируйте JSON вашего сохранения:", jsonStr);
+  });
+}
+
+function importPwaSaveJson() {
+  const jsonStr = prompt("Вставьте JSON сохранения для импорта:");
+  if (!jsonStr) return;
+  try {
+    const parsed = JSON.parse(jsonStr);
+    if (parsed.player) {
+      gameState = { ...gameState, ...parsed };
+      saveGame();
+      renderHUD();
+      showToast("✓ Сохранение импортировано!");
+    } else {
+      showToast("Неверный формат JSON");
+    }
+  } catch (e) {
+    showToast("Ошибка чтения JSON файла");
+  }
+}
+
 function closeModal() {
   const modal = document.getElementById('modal');
   if (modal) modal.classList.remove('active');
