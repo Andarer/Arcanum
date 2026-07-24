@@ -348,7 +348,14 @@ fun ArcanumApp(viewModel: ArcanumViewModel) {
                     isSoundEnabled = isSoundEnabled,
                     onToggleTheme = { viewModel.toggleTheme() },
                     onToggleSound = { viewModel.toggleSound() },
-                    onResetAllData = { viewModel.resetAllData() }
+                    onResetAllData = { viewModel.resetAllData() },
+                    onOpenPwa = { navController.navigate("pwa") }
+                )
+            }
+
+            composable("pwa") {
+                PwaWebScreen(
+                    onBack = { navController.popBackStack() }
                 )
             }
         }

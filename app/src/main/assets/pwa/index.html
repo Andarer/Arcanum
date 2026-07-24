@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#1F2833">
+  <title>Arcanum - Card MMORPG PWA</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <!-- Header HUD -->
+  <header class="top-bar">
+    <div class="brand">
+      <span class="brand-icon">💎</span>
+      <span class="brand-title">ARCANUM</span>
+    </div>
+    <div class="hud-bar">
+      <div class="hud-item hud-level">⚔ <span id="hud-level">1</span></div>
+      <div class="hud-item hud-gold">◉ <span id="hud-gold">150</span></div>
+      <div class="hud-item hud-hp">❤ <span id="hud-hp">100/100</span></div>
+    </div>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <nav class="nav-tabs">
+    <button class="tab-btn active" data-tab="home" onclick="switchTab('home')">
+      <span class="icon">🏰</span> Главная
+    </button>
+    <button class="tab-btn" data-tab="collection" onclick="switchTab('collection')">
+      <span class="icon">🎴</span> Коллекция
+    </button>
+    <button class="tab-btn" data-tab="battle" onclick="switchTab('battle')">
+      <span class="icon">⚔️</span> Арена
+    </button>
+    <button class="tab-btn" data-tab="shop" onclick="switchTab('shop')">
+      <span class="icon">🛍️</span> Магазин
+    </button>
+  </nav>
+
+  <!-- Content Screens -->
+  <main class="content-area">
+    <!-- Home View -->
+    <section id="view-home" class="screen-view active">
+      <div class="battle-arena" style="text-align: center;">
+        <h1 style="color: var(--gold-light); font-size: 24px; margin-bottom: 8px;">ДОБРО ПОЖАЛОВАТЬ В ARCANUM</h1>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+          Карточная ККИ MMORPG с пошаговыми аренами, торговлей, крафтом и коллекционированием.
+        </p>
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+          <button class="btn-action" onclick="switchTab('battle')">⚔ Начать бой на Арене</button>
+          <button class="btn-action" style="background: var(--purple-accent); color: white;" onclick="switchTab('collection')">🎴 Просмотреть Карты</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Collection View -->
+    <section id="view-collection" class="screen-view">
+      <h2 style="color: var(--gold-light); font-size: 18px;">КОЛЛЕКЦИЯ КАРТ</h2>
+      <div id="collection-grid" class="card-grid"></div>
+    </section>
+
+    <!-- Battle View -->
+    <section id="view-battle" class="screen-view">
+      <div class="battle-arena">
+        <!-- Enemy Unit -->
+        <div class="combatant-card">
+          <div>
+            <h3 id="enemy-name" style="color: var(--gold-light); font-size: 16px;">Враг</h3>
+            <div id="enemy-hp-text" style="font-size: 11px; color: var(--red-danger); margin-top: 4px;">100 / 100</div>
+            <div class="hp-bar-container">
+              <div id="enemy-hp-fill" class="hp-bar-fill" style="width: 100%;"></div>
+            </div>
+          </div>
+          <div id="enemy-art" style="font-size: 42px;">👹</div>
+        </div>
+
+        <!-- Battle Log & Controls -->
+        <div class="battle-controls">
+          <button class="btn-action" onclick="playerAttack()">⚔ Атака Клинком</button>
+          <button class="btn-action" style="background: var(--purple-accent); color: white;" onclick="playerAttack()">✨ Магический Удар</button>
+        </div>
+
+        <!-- Player Unit -->
+        <div class="combatant-card">
+          <div style="font-size: 42px;">🛡️</div>
+          <div style="text-align: right;">
+            <h3 style="color: var(--gold-light); font-size: 16px;">Герой</h3>
+            <div id="player-hp-text" style="font-size: 11px; color: var(--green-success); margin-top: 4px;">100 / 100</div>
+            <div class="hp-bar-container">
+              <div id="player-hp-fill" class="hp-bar-fill" style="width: 100%; background: var(--green-success);"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Shop View -->
+    <section id="view-shop" class="screen-view">
+      <h2 style="color: var(--gold-light); font-size: 18px;">МАГАЗИН АРКАНУМА</h2>
+      <div id="shop-items" class="card-grid"></div>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div id="modal" class="modal-overlay">
+    <div class="modal-card"></div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast-msg"></div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

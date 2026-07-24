@@ -20,6 +20,7 @@ fun SettingsScreen(
     onToggleTheme: () -> Unit,
     onToggleSound: () -> Unit,
     onResetAllData: () -> Unit,
+    onOpenPwa: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -108,6 +109,26 @@ fun SettingsScreen(
                         colors = ButtonDefaults.buttonColors(containerColor = RedDanger)
                     ) {
                         Text("Сбросить", fontSize = 11.sp, color = Color.White, fontWeight = FontWeight.Bold)
+                    }
+                }
+
+                Divider(modifier = Modifier.padding(vertical = 12.dp), color = MaterialTheme.colorScheme.outline.copy(alpha = 0.2f))
+
+                // PWA Browser Engine
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text("PWA Веб-Версия", fontSize = 14.sp, fontWeight = FontWeight.Bold, color = GoldLight)
+                        Text("Запустить веб-версию игры прямо в браузере WebView", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
+                    }
+                    Button(
+                        onClick = onOpenPwa,
+                        colors = ButtonDefaults.buttonColors(containerColor = GoldAccent)
+                    ) {
+                        Text("Запустить PWA", fontSize = 11.sp, color = Color.Black, fontWeight = FontWeight.Bold)
                     }
                 }
 

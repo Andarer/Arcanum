@@ -1,0 +1,344 @@
+:root {
+  --bg-dark: #0b0c10;
+  --bg-surface: #1f2833;
+  --bg-card: #181d26;
+  --gold-accent: #c5a059;
+  --gold-light: #f3e5ab;
+  --purple-accent: #9b51e0;
+  --red-danger: #e74c3c;
+  --green-success: #2ecc71;
+  --text-main: #edf5e1;
+  --text-muted: #8892b0;
+  --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: var(--font-family);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* App Header & Top Bar */
+.top-bar {
+  background: linear-gradient(180deg, #181d26 0%, #0b0c10 100%);
+  border-bottom: 2px solid var(--gold-accent);
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-icon {
+  font-size: 24px;
+  background: var(--bg-dark);
+  border: 1px solid var(--gold-accent);
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.brand-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--gold-light);
+  letter-spacing: 2px;
+}
+
+.hud-bar {
+  display: flex;
+  gap: 12px;
+  background: var(--bg-surface);
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.hud-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.hud-gold { color: var(--gold-accent); }
+.hud-level { color: var(--gold-light); }
+.hud-hp { color: var(--red-danger); }
+
+/* Navigation Tabs */
+.nav-tabs {
+  display: flex;
+  background: #12161f;
+  border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.nav-tabs::-webkit-scrollbar { display: none; }
+
+.tab-btn {
+  flex: 1;
+  min-width: 80px;
+  padding: 12px 8px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-weight: 700;
+  font-size: 11px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.tab-btn.active {
+  color: var(--gold-light);
+  border-bottom-color: var(--gold-accent);
+  background: rgba(197, 160, 89, 0.1);
+}
+
+.tab-btn span.icon { font-size: 16px; }
+
+/* Main Screen View Area */
+.content-area {
+  flex: 1;
+  padding: 16px;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.screen-view {
+  display: none;
+  flex-direction: column;
+  gap: 16px;
+  animation: fadeIn 0.25s ease-in-out;
+}
+
+.screen-view.active { display: flex; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Grid Layouts & Cards */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.game-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--gold-accent);
+  border-radius: 12px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-height: 180px;
+  position: relative;
+  overflow: hidden;
+}
+
+.game-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(197, 160, 89, 0.3);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-type {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  background: rgba(0,0,0,0.5);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.card-rarity {
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.rarity-common { background: #3a3f47; color: #ccc; }
+.rarity-rare { background: #1f3b61; color: #64b5f6; }
+.rarity-epic { background: #4d1d60; color: #ba68c8; }
+.rarity-legendary { background: #60461d; color: #ffd54f; }
+
+.card-art {
+  height: 80px;
+  background: radial-gradient(circle, #2b3545 0%, #12161f 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  margin: 6px 0;
+  border: 1px solid rgba(197, 160, 89, 0.2);
+}
+
+.card-title {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--gold-light);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-stats {
+  display: flex;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.stat-pill {
+  font-size: 10px;
+  font-weight: 700;
+  background: rgba(0,0,0,0.6);
+  padding: 2px 5px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* Battle Arena Layout */
+.battle-arena {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: radial-gradient(circle, #1a222e 0%, #0b0c10 100%);
+  border: 2px solid var(--gold-accent);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+}
+
+.combatant-card {
+  background: var(--bg-surface);
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hp-bar-container {
+  width: 100%;
+  height: 12px;
+  background: #12161f;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+  margin-top: 6px;
+}
+
+.hp-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #e74c3c 0%, #ff6b6b 100%);
+  transition: width 0.3s ease;
+}
+
+.battle-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.btn-action {
+  background: linear-gradient(180deg, var(--gold-accent) 0%, #8c6827 100%);
+  color: #000;
+  font-weight: 800;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(197, 160, 89, 0.3);
+}
+
+.btn-action:hover {
+  filter: brightness(1.1);
+}
+
+/* Modals & Dialogs */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-overlay.active { display: flex; }
+
+.modal-card {
+  background: var(--bg-dark);
+  border: 2px solid var(--gold-accent);
+  border-radius: 16px;
+  padding: 20px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+
+/* Quick Toast */
+.toast-msg {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-surface);
+  border: 1px solid var(--gold-accent);
+  color: var(--gold-light);
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 300;
+}
+
+.toast-msg.show { opacity: 1; }
