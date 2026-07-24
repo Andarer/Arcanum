@@ -458,6 +458,14 @@ class ArcanumViewModel(application: Application) : AndroidViewModel(application)
         checkAchievementsAndQuests()
     }
 
+    fun addGold(gold: Int) {
+        viewModelScope.launch {
+            val curr = playerStats.value
+            val newGold = (curr.gold + gold).coerceAtLeast(0)
+            repository.updatePlayerStats(curr.copy(gold = newGold))
+        }
+    }
+
     private fun addGoldAndXp(gold: Int, xp: Int) {
         viewModelScope.launch {
             val curr = playerStats.value

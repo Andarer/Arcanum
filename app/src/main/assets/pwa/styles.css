@@ -33,7 +33,7 @@ body {
 .top-bar {
   background: linear-gradient(180deg, #181d26 0%, #0b0c10 100%);
   border-bottom: 2px solid var(--gold-accent);
-  padding: 12px 16px;
+  padding: 10px 14px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -45,86 +45,96 @@ body {
 .brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .brand-icon {
-  font-size: 24px;
+  font-size: 20px;
   background: var(--bg-dark);
   border: 1px solid var(--gold-accent);
-  border-radius: 8px;
-  padding: 4px;
+  border-radius: 6px;
+  padding: 2px;
 }
 
 .brand-title {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 800;
   color: var(--gold-light);
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
 }
 
 .hud-bar {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   background: var(--bg-surface);
   border: 1px solid rgba(197, 160, 89, 0.4);
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 16px;
+  font-size: 11px;
   font-weight: 700;
 }
 
 .hud-item {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 3px;
 }
 
 .hud-gold { color: var(--gold-accent); }
 .hud-level { color: var(--gold-light); }
 .hud-hp { color: var(--red-danger); }
 
-/* Navigation Tabs */
+/* Navigation Tabs - Fixed Bottom Mobile RPG Action Bar */
 .nav-tabs {
   display: flex;
-  background: #12161f;
-  border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+  background: linear-gradient(180deg, #12161f 0%, #08090d 100%);
+  border-top: 2px solid var(--gold-accent);
   overflow-x: auto;
   scrollbar-width: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.8);
+  padding: 4px 2px;
 }
 
 .nav-tabs::-webkit-scrollbar { display: none; }
 
 .tab-btn {
   flex: 1;
-  min-width: 80px;
-  padding: 12px 8px;
+  min-width: 62px;
+  padding: 8px 4px;
   background: transparent;
   border: none;
   color: var(--text-muted);
-  font-weight: 700;
-  font-size: 11px;
+  font-weight: 800;
+  font-size: 10px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
-  border-bottom: 3px solid transparent;
-  transition: all 0.2s ease;
+  gap: 2px;
+  border-radius: 8px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
 }
 
 .tab-btn.active {
   color: var(--gold-light);
-  border-bottom-color: var(--gold-accent);
-  background: rgba(197, 160, 89, 0.1);
+  background: radial-gradient(circle, rgba(197, 160, 89, 0.25) 0%, rgba(197, 160, 89, 0.05) 100%);
+  border: 1px solid var(--gold-accent);
+  box-shadow: 0 0 12px rgba(197, 160, 89, 0.4);
+  transform: translateY(-2px);
 }
 
 .tab-btn span.icon { font-size: 16px; }
 
-/* Main Screen View Area */
+/* Main Screen View Area with padding for bottom action bar */
 .content-area {
   flex: 1;
-  padding: 16px;
+  padding: 14px 14px 76px 14px;
   max-width: 900px;
   margin: 0 auto;
   width: 100%;
@@ -133,43 +143,147 @@ body {
 .screen-view {
   display: none;
   flex-direction: column;
-  gap: 16px;
-  animation: fadeIn 0.25s ease-in-out;
+  gap: 14px;
+  animation: fadeIn 0.2s ease-in-out;
 }
 
 .screen-view.active { display: flex; }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
+  from { opacity: 0; transform: translateY(4px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* Game Carousel Component */
+.carousel-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.carousel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.carousel-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--gold-accent);
+  letter-spacing: 1.5px;
+}
+
+.carousel-hint {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.game-carousel {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 6px 2px;
+  scrollbar-width: none;
+}
+
+.game-carousel::-webkit-scrollbar { display: none; }
+
+.carousel-card {
+  flex: 0 0 210px;
+  scroll-snap-align: start;
+  background: linear-gradient(135deg, #181d26 0%, #12161f 100%);
+  border: 1.5px solid var(--gold-accent);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 110px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.carousel-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold-light);
+}
+
+.carousel-badge {
+  font-size: 8px;
+  font-weight: 800;
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.carousel-card-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--gold-light);
+  margin-top: 4px;
+}
+
+.carousel-card-sub {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.pwa-input {
+  width: 100%;
+  padding: 8px 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--gold-accent);
+  border-radius: 8px;
+  color: var(--text-main);
+  font-size: 12px;
+  outline: none;
+}
+
+.section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 /* Grid Layouts & Cards */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 10px;
 }
 
 .game-card {
   background: var(--bg-card);
   border: 1.5px solid var(--gold-accent);
-  border-radius: 12px;
-  padding: 10px;
+  border-radius: 10px;
+  padding: 8px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  min-height: 180px;
+  min-height: 160px;
   position: relative;
   overflow: hidden;
 }
 
 .game-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(197, 160, 89, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(197, 160, 89, 0.3);
 }
 
 .card-header {
@@ -179,20 +293,20 @@ body {
 }
 
 .card-type {
-  font-size: 9px;
+  font-size: 8px;
   font-weight: 800;
   text-transform: uppercase;
   color: var(--gold-light);
   background: rgba(0,0,0,0.5);
-  padding: 2px 6px;
-  border-radius: 4px;
+  padding: 2px 4px;
+  border-radius: 3px;
 }
 
 .card-rarity {
-  font-size: 9px;
+  font-size: 8px;
   font-weight: 800;
-  padding: 2px 6px;
-  border-radius: 4px;
+  padding: 2px 4px;
+  border-radius: 3px;
 }
 
 .rarity-common { background: #3a3f47; color: #ccc; }
@@ -201,19 +315,19 @@ body {
 .rarity-legendary { background: #60461d; color: #ffd54f; }
 
 .card-art {
-  height: 80px;
+  height: 70px;
   background: radial-gradient(circle, #2b3545 0%, #12161f 100%);
-  border-radius: 8px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 32px;
-  margin: 6px 0;
+  font-size: 28px;
+  margin: 4px 0;
   border: 1px solid rgba(197, 160, 89, 0.2);
 }
 
 .card-title {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 800;
   color: var(--gold-light);
   white-space: nowrap;
@@ -223,16 +337,16 @@ body {
 
 .card-stats {
   display: flex;
-  gap: 4px;
-  margin-top: 4px;
+  gap: 3px;
+  margin-top: 3px;
 }
 
 .stat-pill {
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
   background: rgba(0,0,0,0.6);
-  padding: 2px 5px;
-  border-radius: 4px;
+  padding: 2px 4px;
+  border-radius: 3px;
   display: flex;
   align-items: center;
   gap: 2px;
@@ -242,19 +356,19 @@ body {
 .battle-arena {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 14px;
   background: radial-gradient(circle, #1a222e 0%, #0b0c10 100%);
-  border: 2px solid var(--gold-accent);
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+  border: 1.5px solid var(--gold-accent);
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.6);
 }
 
 .combatant-card {
   background: var(--bg-surface);
   border: 1px solid rgba(197, 160, 89, 0.3);
-  border-radius: 12px;
-  padding: 14px;
+  border-radius: 10px;
+  padding: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -262,12 +376,12 @@ body {
 
 .hp-bar-container {
   width: 100%;
-  height: 12px;
+  height: 10px;
   background: #12161f;
-  border-radius: 6px;
+  border-radius: 5px;
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.1);
-  margin-top: 6px;
+  margin-top: 4px;
 }
 
 .hp-bar-fill {
@@ -278,24 +392,70 @@ body {
 
 .battle-controls {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   justify-content: center;
-  margin-top: 10px;
+  flex-wrap: wrap;
+  margin-top: 6px;
 }
 
 .btn-action {
   background: linear-gradient(180deg, var(--gold-accent) 0%, #8c6827 100%);
   color: #000;
   font-weight: 800;
-  padding: 12px 20px;
+  padding: 10px 14px;
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(197, 160, 89, 0.3);
+  font-size: 11px;
+  box-shadow: 0 4px 8px rgba(197, 160, 89, 0.3);
 }
 
 .btn-action:hover {
   filter: brightness(1.1);
+}
+
+.quest-card {
+  background: var(--bg-card);
+  border: 1px solid var(--gold-accent);
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Clicker Crystal Styles */
+.clicker-target {
+  font-size: 80px;
+  margin: 15px auto;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.1s ease;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, rgba(197, 160, 89, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.clicker-target:active {
+  transform: scale(0.88);
+}
+
+.floating-click-text {
+  position: absolute;
+  color: var(--gold-light);
+  font-weight: 800;
+  font-size: 16px;
+  pointer-events: none;
+  animation: floatUp 0.8s ease-out forwards;
+}
+
+@keyframes floatUp {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-30px); }
 }
 
 /* Modals & Dialogs */
@@ -303,37 +463,93 @@ body {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.8);
-  z-index: 200;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(8px);
+  z-index: 2000;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 16px;
 }
 
 .modal-overlay.active { display: flex; }
 
 .modal-card {
-  background: var(--bg-dark);
+  background: linear-gradient(180deg, var(--bg-surface) 0%, var(--bg-dark) 100%);
   border: 2px solid var(--gold-accent);
-  border-radius: 16px;
+  border-radius: 20px;
   padding: 20px;
-  max-width: 400px;
+  max-width: 420px;
   width: 100%;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.9);
+}
+
+/* Onboarding Carousel Modal */
+.onboarding-modal-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+
+.onboarding-badge {
+  background: rgba(197, 160, 89, 0.2);
+  border: 1px solid var(--gold-accent);
+  color: var(--gold-light);
+  font-size: 10px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+.onboarding-icon-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: var(--bg-dark);
+  border: 3px solid var(--gold-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
+  box-shadow: 0 0 20px rgba(197, 160, 89, 0.4);
+  margin: 10px 0;
+}
+
+.onboarding-dots {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.onboarding-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--text-muted);
+  transition: all 0.3s ease;
+}
+
+.onboarding-dot.active {
+  width: 24px;
+  background: var(--gold-accent);
 }
 
 /* Quick Toast */
 .toast-msg {
   position: fixed;
-  bottom: 20px;
+  bottom: 16px;
   left: 50%;
   transform: translateX(-50%);
   background: var(--bg-surface);
   border: 1px solid var(--gold-accent);
   color: var(--gold-light);
-  padding: 10px 20px;
-  border-radius: 20px;
+  padding: 8px 16px;
+  border-radius: 16px;
   font-weight: 700;
+  font-size: 11px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.6);
   opacity: 0;
   pointer-events: none;

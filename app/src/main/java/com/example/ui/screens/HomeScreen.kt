@@ -69,6 +69,10 @@ fun HomeScreen(
 
     val menuItems = listOf(
         MenuItemModel("battle", "Арена", Icons.Default.FlashOn),
+        MenuItemModel("pvp", "PVP Арена", Icons.Default.Shield),
+        MenuItemModel("clicker", "Кликер", Icons.Default.TouchApp),
+        MenuItemModel("shooter", "Тир", Icons.Default.AdsClick),
+        MenuItemModel("onboarding", "Обучение", Icons.Default.AutoAwesome),
         MenuItemModel("collection", "Коллекция", Icons.Default.Style),
         MenuItemModel("deck", "Колода", Icons.Default.ViewCarousel),
         MenuItemModel("shop", "Магазин", Icons.Default.Storefront),
@@ -186,6 +190,77 @@ fun HomeScreen(
 
         Spacer(modifier = Modifier.height(24.dp))
 
+        // Featured Game Carousel Header
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = "ИГРОВЫЕ СОБЫТИЯ",
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold,
+                color = GoldAccent,
+                letterSpacing = 2.sp
+            )
+            Text(
+                text = "Листайте ➔",
+                fontSize = 11.sp,
+                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
+            )
+        }
+
+        Spacer(modifier = Modifier.height(10.dp))
+
+        // Horizontal Interactive Game Carousel
+        androidx.compose.foundation.lazy.LazyRow(
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            item {
+                CarouselCardItem(
+                    title = "🔥 БОСС: ВУЛКАН",
+                    subtitle = "Победите огненного демона",
+                    badge = "СОБЫТИЕ",
+                    badgeColor = RedDanger,
+                    icon = "🐉",
+                    onClick = { onNavigate("battle") }
+                )
+            }
+            item {
+                CarouselCardItem(
+                    title = "✨ ЛЕГЕНДАРНЫЙ СУНДУК",
+                    subtitle = "Шанс 100% на Мифическую карту",
+                    badge = "АКЦИЯ",
+                    badgeColor = GoldAccent,
+                    icon = "🎁",
+                    onClick = { onNavigate("chest") }
+                )
+            }
+            item {
+                CarouselCardItem(
+                    title = "🔨 РЕДКИЙ КРАФТ",
+                    subtitle = "Выкуйте 'Меч Дракона'",
+                    badge = "КУЗНИЦА",
+                    badgeColor = PurpleAccent,
+                    icon = "🗡️",
+                    onClick = { onNavigate("craft") }
+                )
+            }
+            item {
+                CarouselCardItem(
+                    title = "🗺️ ПОДЗЕМЕЛЬЕ ТЕНЕЙ",
+                    subtitle = "Новая локация на карте",
+                    badge = "ИССЛЕДОВАНИЕ",
+                    badgeColor = Color(0xFF2980B9),
+                    icon = "🏰",
+                    onClick = { onNavigate("world") }
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+
         Text(
             text = "ГЛАВНОЕ МЕНЮ",
             fontSize = 14.sp,
@@ -261,6 +336,80 @@ fun HomeScreen(
                             }
                         }
                     }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun CarouselCardItem(
+    title: String,
+    subtitle: String,
+    badge: String,
+    badgeColor: Color,
+    icon: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Surface(
+        shape = RoundedCornerShape(18.dp),
+        color = BgDark2,
+        border = BorderStroke(1.5.dp, GoldAccent.copy(alpha = 0.5f)),
+        shadowElevation = 6.dp,
+        modifier = modifier
+            .width(220.dp)
+            .height(115.dp)
+            .clickable { onClick() }
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(12.dp)
+        ) {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.SpaceBetween
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Surface(
+                        shape = RoundedCornerShape(6.dp),
+                        color = badgeColor,
+                        modifier = Modifier.padding(bottom = 2.dp)
+                    ) {
+                        Text(
+                            text = badge,
+                            fontSize = 8.sp,
+                            fontWeight = FontWeight.ExtraBold,
+                            color = Color.White,
+                            modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                        )
+                    }
+
+                    Text(
+                        text = icon,
+                        fontSize = 22.sp
+                    )
+                }
+
+                Column {
+                    Text(
+                        text = title,
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = GoldLight,
+                        maxLines = 1
+                    )
+                    Text(
+                        text = subtitle,
+                        fontSize = 10.sp,
+                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+                        maxLines = 1
+                    )
                 }
             }
         }

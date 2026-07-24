@@ -13,7 +13,7 @@
   <header class="top-bar">
     <div class="brand">
       <span class="brand-icon">💎</span>
-      <span class="brand-title">ARCANUM</span>
+      <span class="brand-title">ARCANUM PWA</span>
     </div>
     <div class="hud-bar">
       <div class="hud-item hud-level">⚔ <span id="hud-level">1</span></div>
@@ -28,13 +28,37 @@
       <span class="icon">🏰</span> Главная
     </button>
     <button class="tab-btn" data-tab="collection" onclick="switchTab('collection')">
-      <span class="icon">🎴</span> Коллекция
+      <span class="icon">🎴</span> Карты
     </button>
     <button class="tab-btn" data-tab="battle" onclick="switchTab('battle')">
       <span class="icon">⚔️</span> Арена
     </button>
-    <button class="tab-btn" data-tab="shop" onclick="switchTab('shop')">
-      <span class="icon">🛍️</span> Магазин
+    <button class="tab-btn" data-tab="pvp" onclick="switchTab('pvp')">
+      <span class="icon">⚔️</span> PVP
+    </button>
+    <button class="tab-btn" data-tab="clicker" onclick="switchTab('clicker')">
+      <span class="icon">💎</span> Кликер
+    </button>
+    <button class="tab-btn" data-tab="shooter" onclick="switchTab('shooter')">
+      <span class="icon">🎯</span> Шутер
+    </button>
+    <button class="tab-btn" data-tab="world" onclick="switchTab('world')">
+      <span class="icon">🗺️</span> Мир
+    </button>
+    <button class="tab-btn" data-tab="craft" onclick="switchTab('craft')">
+      <span class="icon">🔨</span> Крафт
+    </button>
+    <button class="tab-btn" data-tab="deck" onclick="switchTab('deck')">
+      <span class="icon">📦</span> Колода
+    </button>
+    <button class="tab-btn" data-tab="quests" onclick="switchTab('quests')">
+      <span class="icon">📜</span> Квесты
+    </button>
+    <button class="tab-btn" data-tab="chests" onclick="switchTab('chests')">
+      <span class="icon">🎁</span> Сундуки
+    </button>
+    <button class="tab-btn" data-tab="settings" onclick="switchTab('settings')">
+      <span class="icon">⚙️</span> Опции
     </button>
   </nav>
 
@@ -43,20 +67,78 @@
     <!-- Home View -->
     <section id="view-home" class="screen-view active">
       <div class="battle-arena" style="text-align: center;">
-        <h1 style="color: var(--gold-light); font-size: 24px; margin-bottom: 8px;">ДОБРО ПОЖАЛОВАТЬ В ARCANUM</h1>
-        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
-          Карточная ККИ MMORPG с пошаговыми аренами, торговлей, крафтом и коллекционированием.
+        <h1 style="color: var(--gold-light); font-size: 22px; margin-bottom: 8px;">ARCANUM PWA MMORPG</h1>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">
+          Полноценная PWA версия, идентичная Android APK. Карточная ККИ, Арены, Мир, Крафт и Квесты в офлайне.
         </p>
-        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <div class="quick-grid">
           <button class="btn-action" onclick="switchTab('battle')">⚔ Начать бой на Арене</button>
-          <button class="btn-action" style="background: var(--purple-accent); color: white;" onclick="switchTab('collection')">🎴 Просмотреть Карты</button>
+          <button class="btn-action" style="background: var(--purple-accent); color: white;" onclick="switchTab('world')">🗺️ Исследовать Мир</button>
+          <button class="btn-action" style="background: #27ae60; color: white;" onclick="switchTab('craft')">🔨 Крафт & Алхимия</button>
+          <button class="btn-action" style="background: #2980b9; color: white;" onclick="switchTab('quests')">📜 Квесты & Награды</button>
+        </div>
+      </div>
+
+      <!-- Game Carousel Section -->
+      <div class="carousel-container">
+        <div class="carousel-header">
+          <span class="carousel-title">ИГРОВЫЕ СОБЫТИЯ</span>
+          <span class="carousel-hint">Листайте ➔</span>
+        </div>
+        <div class="game-carousel">
+          <div class="carousel-card" onclick="switchTab('battle')">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="carousel-badge" style="background: var(--red-danger);">СОБЫТИЕ</span>
+              <span style="font-size: 20px;">🐉</span>
+            </div>
+            <div>
+              <div class="carousel-card-title">🔥 БОСС: ВУЛКАН</div>
+              <div class="carousel-card-sub">Победите огненного демона</div>
+            </div>
+          </div>
+
+          <div class="carousel-card" onclick="switchTab('chests')">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="carousel-badge" style="background: var(--gold-accent);">АКЦИЯ</span>
+              <span style="font-size: 20px;">🎁</span>
+            </div>
+            <div>
+              <div class="carousel-card-title">✨ ЭПИЧЕСКИЙ СУНДУК</div>
+              <div class="carousel-card-sub">Шанс на Мифическую карту</div>
+            </div>
+          </div>
+
+          <div class="carousel-card" onclick="switchTab('craft')">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="carousel-badge" style="background: var(--purple-accent);">КУЗНИЦА</span>
+              <span style="font-size: 20px;">🗡️</span>
+            </div>
+            <div>
+              <div class="carousel-card-title">🔨 РЕДКИЙ КРАФТ</div>
+              <div class="carousel-card-sub">Выкуйте Меч Дракона</div>
+            </div>
+          </div>
+
+          <div class="carousel-card" onclick="switchTab('world')">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="carousel-badge" style="background: #2980B9;">КАРТА</span>
+              <span style="font-size: 20px;">🏰</span>
+            </div>
+            <div>
+              <div class="carousel-card-title">🗺️ ТЕНЕВОЕ ПОДЗЕМЕЛЬЕ</div>
+              <div class="carousel-card-sub">Новая локация на карте</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Collection View -->
     <section id="view-collection" class="screen-view">
-      <h2 style="color: var(--gold-light); font-size: 18px;">КОЛЛЕКЦИЯ КАРТ</h2>
+      <div class="section-header">
+        <h2 style="color: var(--gold-light); font-size: 18px;">КОЛЛЕКЦИЯ КАРТ</h2>
+        <input type="text" id="card-search-input" placeholder="🔍 Поиск карт..." class="pwa-input" oninput="renderCollection()">
+      </div>
       <div id="collection-grid" class="card-grid"></div>
     </section>
 
@@ -78,7 +160,8 @@
         <!-- Battle Log & Controls -->
         <div class="battle-controls">
           <button class="btn-action" onclick="playerAttack()">⚔ Атака Клинком</button>
-          <button class="btn-action" style="background: var(--purple-accent); color: white;" onclick="playerAttack()">✨ Магический Удар</button>
+          <button class="btn-action" style="background: var(--purple-accent); color: white;" onclick="useSpecialAbility()">✨ Магия / Способность</button>
+          <button class="btn-action" style="background: #27ae60; color: white;" onclick="usePotion()">🧪 Зелье (+40 HP)</button>
         </div>
 
         <!-- Player Unit -->
@@ -95,10 +178,119 @@
       </div>
     </section>
 
-    <!-- Shop View -->
-    <section id="view-shop" class="screen-view">
-      <h2 style="color: var(--gold-light); font-size: 18px;">МАГАЗИН АРКАНУМА</h2>
-      <div id="shop-items" class="card-grid"></div>
+    <!-- PVP Online Arena View -->
+    <section id="view-pvp" class="screen-view">
+      <div class="battle-arena">
+        <h2 style="color: var(--gold-light); font-size: 18px; text-align: center;">ONLINE PVP АРЕНА</h2>
+        <div id="pvp-status-box" style="text-align: center; background: var(--bg-card); padding: 12px; border-radius: 10px; border: 1px solid var(--gold-accent);">
+          <p id="pvp-status-text" style="font-size: 13px; color: var(--gold-light);">Рейтинг: <span id="pvp-rating">1200</span> MMР | Лига: Золотая</p>
+          <button class="btn-action" style="margin-top: 10px;" onclick="startPvpMatchmaking()">🔍 Найти Соперника</button>
+        </div>
+
+        <div id="pvp-battle-box" style="display: none; flex-direction: column; gap: 10px;">
+          <div class="combatant-card">
+            <div>
+              <h3 id="pvp-enemy-name" style="color: var(--gold-light); font-size: 15px;">Игрок_992</h3>
+              <div id="pvp-enemy-hp-text" style="font-size: 11px; color: var(--red-danger);">120 / 120</div>
+            </div>
+            <div style="font-size: 32px;">🛡️</div>
+          </div>
+
+          <div style="text-align: center; font-size: 12px; color: var(--gold-accent);" id="pvp-turn-timer">Ваш ход (15 сек)</div>
+
+          <div class="battle-controls">
+            <button class="btn-action" onclick="pvpPlayerAttack()">⚔ Атаковать</button>
+            <button class="btn-action" style="background: var(--purple-accent); color: white;" onclick="pvpPlayerMagic()">✨ Суперудар</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tap Clicker View -->
+    <section id="view-clicker" class="screen-view">
+      <div class="battle-arena" style="text-align: center;">
+        <h2 style="color: var(--gold-light); font-size: 18px;">КРИСТАЛЛ АРКАНУМА</h2>
+        <p style="font-size: 11px; color: var(--text-muted);">Кликайте по кристаллу для добычи Маны и Золота!</p>
+
+        <div id="clicker-crystal" class="clicker-target" onclick="clickCrystal(event)">💎</div>
+
+        <div style="display: flex; justify-content: space-around; margin: 10px 0; font-weight: 700;">
+          <span>За клик: +<span id="click-power">1</span> ◉</span>
+          <span>Авто-Майнеры: <span id="auto-miners-count">0</span>/сек</span>
+        </div>
+
+        <div class="quick-grid">
+          <button class="btn-action" onclick="buyClickUpgrade()">⚡ Улучшить Клик (50 ◉)</button>
+          <button class="btn-action" style="background: var(--purple-accent); color: white;" onclick="buyAutoMiner()">🤖 Авто-Майнер (150 ◉)</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Arcade Shooter View -->
+    <section id="view-shooter" class="screen-view">
+      <div class="battle-arena" style="text-align: center;">
+        <h2 style="color: var(--gold-light); font-size: 18px;">АРКАДНЫЙ ТИР</h2>
+        <p style="font-size: 11px; color: var(--text-muted);">Уничтожайте летящие монстры кликами или касаниями!</p>
+
+        <canvas id="shooter-canvas" width="320" height="240" style="background: #000; border: 1.5px solid var(--gold-accent); border-radius: 10px; width: 100%; max-width: 400px; margin: 0 auto; display: block;"></canvas>
+
+        <div style="display: flex; gap: 10px; justify-content: center; margin-top: 8px;">
+          <button class="btn-action" onclick="startShooterGame()">▶ Начать Игру</button>
+          <span style="font-size: 13px; font-weight: 700; color: var(--gold-light); align-self: center;">Счет: <span id="shooter-score">0</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- World View -->
+    <section id="view-world" class="screen-view">
+      <h2 style="color: var(--gold-light); font-size: 18px; margin-bottom: 12px;">КАРТА МИРА ARCANUM</h2>
+      <div id="world-locations-grid" class="card-grid"></div>
+    </section>
+
+    <!-- Craft View -->
+    <section id="view-craft" class="screen-view">
+      <h2 style="color: var(--gold-light); font-size: 18px; margin-bottom: 12px;">КУЗНИЦА & АЛХИМИЯ</h2>
+      <div class="battle-arena">
+        <p style="font-size: 12px; color: var(--text-muted); text-align: center;">
+          Комбинируйте ресурсы и дубликаты карт для перековки в новые редкие артефакты.
+        </p>
+        <div id="craft-recipes-list" class="card-grid"></div>
+      </div>
+    </section>
+
+    <!-- Deck View -->
+    <section id="view-deck" class="screen-view">
+      <h2 style="color: var(--gold-light); font-size: 18px; margin-bottom: 12px;">АКТИВНАЯ КОЛОДА & ИНВЕНТАРЬ</h2>
+      <div id="deck-cards-list" class="card-grid"></div>
+    </section>
+
+    <!-- Quests View -->
+    <section id="view-quests" class="screen-view">
+      <h2 style="color: var(--gold-light); font-size: 18px; margin-bottom: 12px;">КВЕСТЫ И ДОСТИЖЕНИЯ</h2>
+      <div id="quests-list" style="display: flex; flex-direction: column; gap: 10px;"></div>
+    </section>
+
+    <!-- Chests View -->
+    <section id="view-chests" class="screen-view">
+      <h2 style="color: var(--gold-light); font-size: 18px; margin-bottom: 12px;">СУНДУКИ И НАГРАДЫ</h2>
+      <div id="chests-grid" class="card-grid"></div>
+    </section>
+
+    <!-- Settings View -->
+    <section id="view-settings" class="screen-view">
+      <div class="battle-arena">
+        <h2 style="color: var(--gold-light); font-size: 18px;">НАСТРОЙКИ & ПРОФИЛЬ</h2>
+        <p style="font-size: 12px; color: var(--text-muted);">
+          Синхронизировано с системой сохранения PWA LocalStorage.
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 12px;">
+          <button class="btn-action" style="background: var(--gold-accent); color: black; font-weight: 800;" onclick="showOnboardingModal()">✨ Открыть Обучение (Карусель)</button>
+          <button class="btn-action" style="background: #2980b9; color: white;" onclick="toggleFullscreen()">📺 Полноэкранный Режим</button>
+          <button class="btn-action" style="background: var(--purple-accent); color: white;" onclick="toggleSound()">🔊 Переключить Звуковые Эффекты</button>
+          <button class="btn-action" onclick="saveGame(); showToast('Сохранение завершено!');">💾 Сохранить Игру</button>
+          <button class="btn-action" style="background: var(--red-danger); color: white;" onclick="resetGame()">🔄 Сбросить Весь Прогресс</button>
+        </div>
+      </div>
     </section>
   </main>
 

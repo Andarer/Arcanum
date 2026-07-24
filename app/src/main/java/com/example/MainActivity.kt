@@ -262,6 +262,32 @@ fun ArcanumApp(viewModel: ArcanumViewModel) {
                 )
             }
 
+            composable("pvp") {
+                PvpScreen(
+                    playerStats = playerStats,
+                    onAddGold = { gold -> viewModel.addGold(gold) }
+                )
+            }
+
+            composable("clicker") {
+                ClickerScreen(
+                    gold = playerStats.gold,
+                    onAddGold = { gold -> viewModel.addGold(gold) }
+                )
+            }
+
+            composable("shooter") {
+                ShooterScreen(
+                    onAddGold = { gold -> viewModel.addGold(gold) }
+                )
+            }
+
+            composable("onboarding") {
+                OnboardingScreen(
+                    onFinishOnboarding = { navController.navigate("home") }
+                )
+            }
+
             composable("shop") {
                 ShopScreen(
                     gold = playerStats.gold,
