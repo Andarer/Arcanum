@@ -1,0 +1,6 @@
+{
+  "name": "Arcanum",
+  "description": "Hybrid Card MMORPG with card collection, deck builder, arena battles, crafting, shop, quests, achievements, and world map.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
