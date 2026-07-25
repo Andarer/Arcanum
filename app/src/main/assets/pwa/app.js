@@ -138,6 +138,11 @@ function switchTab(tabName) {
       window.ArcanumPackageEngine.renderPackageManagerDashboard();
     }
   }
+  if (tabName === 'github') {
+    if (window.GitHubDigitalFactoryDashboard) {
+      window.GitHubDigitalFactoryDashboard.renderDashboard();
+    }
+  }
 }
 
 // PVP Arena Engine

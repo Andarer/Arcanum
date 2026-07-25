@@ -1,0 +1,43 @@
+name: Arcanum Self-Validation & Architecture Quality Audit
+
+on:
+  push:
+    branches: [ main, master, develop, 'feature/*' ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    name: Self-Validation & Architecture Pipeline
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Verify Directory Structure & Manifest
+        run: |
+          echo "=== Auditing Arcanum Platform Structure ==="
+          test -f app/src/main/assets/pwa/index.html || (echo "ERROR: PWA index.html missing" && exit 1)
+          test -f app/src/main/assets/pwa/manifest.json || (echo "ERROR: PWA manifest.json missing" && exit 1)
+          test -f app/src/main/assets/pwa/sw.js || (echo "ERROR: PWA sw.js missing" && exit 1)
+          test -f ARCHITECTURE.md || (echo "ERROR: ARCHITECTURE.md missing" && exit 1)
+          echo "SUCCESS: Structural integrity verified."
+
+      - name: Validate PWA Offline Caching & Service Worker
+        run: |
+          echo "=== Auditing Service Worker Cache Assets ==="
+          grep "CACHE_NAME" app/src/main/assets/pwa/sw.js
+          echo "SUCCESS: Service Worker verified."
+
+      - name: Compile Android Project & Test Build
+        run: gradle assembleDebug --stacktrace
