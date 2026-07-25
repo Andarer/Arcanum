@@ -115,14 +115,22 @@ fun ChestScreen(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.img_magic_chest),
-                    contentDescription = "Magic Chest Art",
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .clip(RoundedCornerShape(24.dp))
-                )
+                val chestPainter = runCatching { painterResource(id = R.drawable.img_magic_chest) }.getOrNull()
+                if (chestPainter != null) {
+                    Image(
+                        painter = chestPainter,
+                        contentDescription = "Magic Chest Art",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .clip(RoundedCornerShape(24.dp))
+                    )
+                } else {
+                    CardArtGraphic(
+                        artKey = "crystal",
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
                 Surface(
                     color = Color.Black.copy(alpha = 0.65f),
                     shape = RoundedCornerShape(12.dp),

@@ -931,6 +931,9 @@ if ('serviceWorker' in navigator) {
 
 // Init
 window.addEventListener('DOMContentLoaded', () => {
+  if (window.ArcanumEngine) {
+    window.ArcanumEngine.boot();
+  }
   loadGame();
   switchTab('home');
 });

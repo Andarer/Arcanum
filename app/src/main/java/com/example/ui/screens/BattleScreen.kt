@@ -34,7 +34,7 @@ import com.example.data.InventoryEntity
 import com.example.ui.BattleState
 import com.example.ui.FloatingDamage
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.ContentScale
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import com.example.R
 import com.example.ui.components.CardArtGraphic

@@ -4,6 +4,7 @@ import android.app.Activity
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
@@ -41,22 +42,38 @@ private val LightColorScheme = lightColorScheme(
 @Composable
 fun ArcanumTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
+    renderProfile: RenderProfile = RenderProfile.Fantasy,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
+    val styleSpec = getRenderStyle(renderProfile)
+    val colorScheme = darkColorScheme(
+        primary = styleSpec.primaryColor,
+        onPrimary = Color.Black,
+        secondary = styleSpec.secondaryColor,
+        onSecondary = Color.White,
+        tertiary = styleSpec.accentColor,
+        background = styleSpec.bgGradientStart,
+        surface = styleSpec.surfaceColor,
+        surfaceVariant = styleSpec.surfaceColor.copy(alpha = 0.8f),
+        onBackground = Color(0xFFF0EBF8),
+        onSurface = Color(0xFFF0EBF8),
+        error = RedDanger
+    )
     val view = LocalView.current
 
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
             window.statusBarColor = colorScheme.background.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
         }
     }
 
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        content = content
-    )
+    CompositionLocalProvider(LocalRenderProfile provides renderProfile) {
+        MaterialTheme(
+            colorScheme = colorScheme,
+            typography = Typography,
+            content = content
+        )
+    }
 }

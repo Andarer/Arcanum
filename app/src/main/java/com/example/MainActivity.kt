@@ -45,8 +45,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             val arcanumViewModel: ArcanumViewModel = viewModel()
             val isDarkTheme by arcanumViewModel.isDarkTheme.collectAsStateWithLifecycle()
+            val activeRenderProfile by arcanumViewModel.activeRenderProfile.collectAsStateWithLifecycle()
 
-            ArcanumTheme(darkTheme = isDarkTheme) {
+            ArcanumTheme(
+                darkTheme = isDarkTheme,
+                renderProfile = activeRenderProfile
+            ) {
                 ArcanumApp(viewModel = arcanumViewModel)
             }
         }
@@ -343,7 +347,10 @@ fun ArcanumApp(viewModel: ArcanumViewModel) {
             }
 
             composable("editor") {
+                val activeRenderProfile by viewModel.activeRenderProfile.collectAsStateWithLifecycle()
                 EditorScreen(
+                    activeRenderProfile = activeRenderProfile,
+                    onSetRenderProfile = { profile -> viewModel.setRenderProfile(profile) },
                     onCreateCard = { name, type, rarity, hp, mp, str, def, desc, art ->
                         viewModel.createCard(name, type, rarity, hp, mp, str, def, desc, art)
                     }

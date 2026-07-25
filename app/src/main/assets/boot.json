@@ -1,0 +1,22 @@
+{
+  "engine": "Arcanum Universal Core Engine",
+  "version": "0.5.0",
+  "activeModules": [
+    "battle",
+    "cards",
+    "inventory",
+    "quest",
+    "save_sync"
+  ],
+  "supportedClients": [
+    "Android Native",
+    "PWA Web App",
+    "Desktop Electron",
+    "CLI"
+  ],
+  "customSettings": {
+    "defaultTheme": "Dark Fantasy Gold",
+    "autoSave": "true",
+    "offlineMode": "enabled"
+  }
+}

@@ -3,6 +3,8 @@ package com.example.ui
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.core.engine.ArcanumEngine
+import com.example.core.engine.ArcanumEvent
 import com.example.audio.SoundManager
 import com.example.data.CardEntity
 import com.example.data.InventoryEntity
@@ -33,6 +35,9 @@ class BattleViewModel(application: Application) : AndroidViewModel(application) 
 
     fun startBattle(playerStats: PlayerStatsEntity, enemyOverride: EnemyModel? = null) {
         val enemy = enemyOverride ?: defaultEnemies.random()
+        ArcanumEngine.context.eventBus.publish(
+            ArcanumEvent(type = "battle_start", sourceModuleId = "battle", payload = mapOf("enemy" to enemy.name))
+        )
         _battleState.value = BattleState(
             enemy = enemy,
             playerHp = playerStats.hp,

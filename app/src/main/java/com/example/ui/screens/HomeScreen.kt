@@ -77,16 +77,16 @@ fun HomeScreen(
         MenuItemModel("deck", "Колода", Icons.Default.ViewCarousel),
         MenuItemModel("shop", "Магазин", Icons.Default.Storefront),
         MenuItemModel("quests", "Квесты", Icons.Default.Assignment, badgeCount = claimableQuestsCount),
-        MenuItemModel("craft", "Крафт", Icons.Default.AutoFixHigh),
-        MenuItemModel("chest", "Сундуки", Icons.Default.CardGiftcard),
-        MenuItemModel("world", "Мир", Icons.Default.Explore),
+        MenuItemModel("craft", "Алхимия", Icons.Default.AutoFixHigh),
+        MenuItemModel("chest", "Сокровищница", Icons.Default.CardGiftcard),
+        MenuItemModel("world", "Карта Миров", Icons.Default.Explore),
         MenuItemModel("inventory", "Инвентарь", Icons.Default.Backpack),
-        MenuItemModel("editor", "Редактор", Icons.Default.Edit),
-        MenuItemModel("achievements", "Достижения", Icons.Default.EmojiEvents),
+        MenuItemModel("editor", "Студия OS", Icons.Default.Edit),
+        MenuItemModel("achievements", "Зал Славы", Icons.Default.EmojiEvents),
         MenuItemModel("diary", "Дневник", Icons.Default.MenuBook),
-        MenuItemModel("print", "Печать", Icons.Default.Print),
-        MenuItemModel("qr", "QR-Код", Icons.Default.QrCode),
-        MenuItemModel("settings", "Настройки", Icons.Default.Settings)
+        MenuItemModel("print", "Типография", Icons.Default.Print),
+        MenuItemModel("qr", "Портал QR", Icons.Default.QrCode),
+        MenuItemModel("settings", "Мастерская", Icons.Default.Settings)
     )
 
     Column(
@@ -106,12 +106,20 @@ fun HomeScreen(
                 .height(190.dp)
         ) {
             Box(modifier = Modifier.fillMaxSize()) {
-                Image(
-                    painter = painterResource(id = R.drawable.img_arcanum_hero),
-                    contentDescription = "Arcanum Hero Banner",
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier.fillMaxSize()
-                )
+                val heroPainter = runCatching { painterResource(id = R.drawable.img_arcanum_hero) }.getOrNull()
+                if (heroPainter != null) {
+                    Image(
+                        painter = heroPainter,
+                        contentDescription = "Arcanum Hero Banner",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.fillMaxSize()
+                    )
+                } else {
+                    com.example.ui.components.CardArtGraphic(
+                        artKey = "dragon",
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
                 Box(
                     modifier = Modifier
                         .fillMaxSize()

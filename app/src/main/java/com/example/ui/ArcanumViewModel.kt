@@ -4,6 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.audio.SoundManager
+import com.example.core.engine.ArcanumBootstrapper
+import com.example.core.engine.ArcanumEngine
 import com.example.data.*
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -73,6 +75,7 @@ class ArcanumViewModel(application: Application) : AndroidViewModel(application)
     val isLoading = MutableStateFlow(true)
     var isDarkTheme = MutableStateFlow(true)
     var isSoundEnabled = MutableStateFlow(true)
+    var activeRenderProfile = MutableStateFlow(com.example.ui.theme.RenderProfile.Fantasy)
     var toastMessage = MutableStateFlow<String?>(null)
 
     // Room Flows
@@ -115,6 +118,9 @@ class ArcanumViewModel(application: Application) : AndroidViewModel(application)
     )
 
     init {
+        // Boot Core Micro-Module Engine
+        ArcanumBootstrapper.boot()
+
         val db = ArcanumDatabase.getDatabase(application, viewModelScope)
         repository = ArcanumRepository(db)
 
@@ -169,6 +175,12 @@ class ArcanumViewModel(application: Application) : AndroidViewModel(application)
         isSoundEnabled.value = !isSoundEnabled.value
         soundManager.isSoundEnabled = isSoundEnabled.value
         if (isSoundEnabled.value) soundManager.playClick()
+    }
+
+    fun setRenderProfile(profile: com.example.ui.theme.RenderProfile) {
+        soundManager.playClick()
+        activeRenderProfile.value = profile
+        showToast("🎨 Рендерер: ${profile.title}")
     }
 
     fun resetBattle(silent: Boolean = false) {
