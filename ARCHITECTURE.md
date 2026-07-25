@@ -1,19 +1,19 @@
-# Arcanum Engine Architecture Specification v0.7.0
+# Arcanum Engine Architecture Specification v2.0
 
 ## Vision: "ONE CORE. INFINITE WORLDS. LIVING GAMING OS."
 
-Arcanum is a universal, multi-platform gaming operating system designed to assemble Card RPGs, MMORPGs, Shooters, Quests, Sandbox, Clickers, and Arcanum Studio tools across Android, PWA, Web, Desktop, and CLI runtimes using a shared fractal micro-module architecture and dynamic Render Profiles.
+Arcanum Evolution is a universal digital platform designed to assemble Card RPGs, MMORPGs, Shooters, Quests, Sandboxes, Clickers, and Arcanum Studio tools across Android, PWA, Web, Desktop, and CLI runtimes using a shared fractal micro-module architecture, dynamic Render Profiles, and the Arcanum Link Protocol (ALP).
 
 ---
 
 ## Architectural Principles
 
 1. **One Core Engine**: Pure business logic, ECS (Entity Component System), System Pipeline, EventBus, and ModuleRegistry completely decoupled from UI frameworks.
-2. **Typed Interface Contracts**: Every micro-module implements explicit domain interfaces (`IBattleModule`, `ICardsModule`, `IInventoryModule`, `IQuestModule`, `ISaveSyncModule`) for strict compile-time safety across clients.
-3. **Living Gaming Operating System (UI Constitution v1.0)**: Arcanum is an in-world OS. Users navigate locations (Architect's Tower, Forge, Laboratory, Knowledge Archive, Portals) rather than standard apps.
-4. **Dynamic Render Profiles**: Runtime swap of visual shaders/renderers (`FantasyRenderer`, `DarkRenderer`, `SciFiRenderer`, `CyberpunkRenderer`, `PixelRenderer`, `ConsoleRenderer`, `MinimalRenderer`) without changing underlying core state.
-5. **Micro-Module Isolation**: Every feature operates as an independent micro-module containing its manifest metadata, event contracts, dependencies, and lifecycle hooks (`onRegister`, `onInit`, `onEnable`, `onDisable`, `onDestroy`).
-6. **Composition via `boot.json`**: Worlds and game modes are assembled by composing modules in `boot.json`. Switching or swapping modules requires zero changes to the rest of the engine.
+2. **Typed Interface Contracts**: Every micro-module implements explicit domain interfaces (`IBattleModule`, `ICardsModule`, `IInventoryModule`, `IQuestModule`, `ISaveSyncModule`, `IEditorModule`, `IUIRenderModule`) for compile-time safety.
+3. **Arcanum Link Protocol (ALP v2.0)**: Universal cross-device serialization format (`ALPMessage`, QR payloads, `arcanum://link` universal links) for sharing game entities and world states.
+4. **Living Gaming Operating System (UI Constitution v1.0)**: Arcanum is an in-world OS where users navigate physical/magical locations (Architect's Tower, Forge, Guild, Laboratory, Knowledge Archive, Portals) rather than standard application screens.
+5. **Dynamic Render Profiles**: Runtime swap of visual themes and shaders (`Fantasy`, `Dark`, `SciFi`, `Cyberpunk`, `Pixel`, `Console`, `Minimal`) without altering underlying game state.
+6. **Composition via `boot.json`**: Worlds and game modes are assembled dynamically by composing micro-modules in `boot.json`.
 
 ---
 
@@ -29,11 +29,9 @@ Arcanum is a universal, multi-platform gaming operating system designed to assem
   │    ├── EventBus.kt          (ArcanumEvent, EventBus)
   │    ├── EngineContext.kt     (EngineContext, ModuleRegistry)
   │    ├── ArcanumEngine.kt     (Singleton Engine Facade)
-  │    ├── BootConfig.kt        (BootConfig, ArcanumBootstrapper)
-  │    ├── components/
-  │    │    └── Components.kt   (IdentityComponent, StatsComponent, AbilityComponent, ItemComponent, QuestComponent)
-  │    └── adapters/
-  │         └── EntityAdapters.kt (Room Entity -> Core ECS Entity Adapters)
+  │    └── BootConfig.kt        (BootConfig, ArcanumBootstrapper)
+  ├── protocol/
+  │    └── ArcanumLinkProtocol.kt (ALP v2.0 Protocol, ALPMessage, ArcanumLinkAdapter)
   └── modules/
        └── CoreModules.kt       (IBattleModule, ICardsModule, IInventoryModule, IQuestModule, ISaveSyncModule)
 ```
@@ -41,7 +39,7 @@ Arcanum is a universal, multi-platform gaming operating system designed to assem
 ### 2. UI Engine & Render Profiles (`/app/src/main/java/com/example/ui/theme/`)
 ```
 /com.example.ui.theme/
-  ├── RenderEngine.kt        (RenderProfile enum & getRenderStyle specification)
+  ├── RenderEngine.kt        (RenderProfile enum & getRenderStyle spec)
   ├── Theme.kt               (ArcanumTheme composition local & dynamic color scheme)
   └── Color.kt               (Elemental palettes, rarity colors, obsidian surfaces)
 ```
@@ -52,46 +50,18 @@ ArcanumEngineJS
   ├── EventBusJS (Publish / Subscribe Event System)
   ├── ModuleRegistryJS (Register / Lifecycle Control)
   ├── EngineContextJS (Global State & Event Bus)
+  ├── ArcanumLinkProtocolJS (ALP v2.0 Mirror for PWA)
   └── BaseArcanumModuleJS (Micro-module interface)
 ```
 
 ---
 
-## ECS & Entity Adapters
+## Arcanum Link Protocol (ALP v2.0)
 
-In Arcanum Engine, cards, player heroes, enemies, items, and quests are all instances of `Entity` with attached `Component`s operated on by `System`s:
-- `IdentityComponent`: `entityType`, `rarity`, `artKey`, `description`
-- `StatsComponent`: `hp`, `hpMax`, `mp`, `mpMax`, `str`, `def`, `level`, `xp`
-- `AbilityComponent`: `name`, `type`, `value`, `cost`, `description`
-- `ItemComponent`: `count`, `useType`, `effectValue`
-- `QuestComponent`: `target`, `statKey`, `xpReward`, `goldReward`, `currentProgress`, `isCompleted`
-
-Data adapters (`EntityAdapters`) convert database persistence objects (Room entities) into runtime ECS Entities without breaking database schema or existing ViewModel integrations.
-
----
-
-## Micro-Module Contract & Interface Hierarchy
-
-Every module defines its metadata and implements domain interfaces:
-```json
-{
-  "id": "battle",
-  "name": "Battle Core Module",
-  "version": "1.0.0",
-  "description": "Handles turn-based battle mechanics and calculations.",
-  "dependencies": [],
-  "eventsPublished": ["battle_start", "battle_turn", "battle_end"],
-  "eventsSubscribed": ["card_played", "use_item"]
-}
-```
-
-Lifecycle & API Interfaces:
-- `ArcanumModule`: `manifest`, `state`, `onRegister`, `onInit`, `onEnable`, `onDisable`, `onDestroy`
-- `IBattleModule`: `calculateDamage()`, `executeTurn()`
-- `ICardsModule`: `canEvolveCard()`, `calculateEvolvedStats()`
-- `IInventoryModule`: `canCraftItem()`
-- `IQuestModule`: `evaluateProgress()`
-- `ISaveSyncModule`: `serializeState()`
+ALP is the unified data exchange protocol for Arcanum:
+- **QR Payload Format**: `ALP2:<entityType>:<entityId>:<key1>=<val1>;<key2>=<val2>`
+- **Universal Link Format**: `arcanum://link?data=<urlEncodedJson>`
+- **Entity Adapter**: Maps Arcanum ECS `Entity` & `Component`s directly to `ALPMessage` and back.
 
 ---
 
@@ -100,13 +70,15 @@ Lifecycle & API Interfaces:
 ```json
 {
   "engine": "Arcanum Universal Core Engine",
-  "version": "0.7.0",
+  "version": "2.0.0",
   "activeModules": [
     "battle",
     "cards",
     "inventory",
     "quest",
-    "save_sync"
+    "save_sync",
+    "editor",
+    "ui_render"
   ],
   "renderProfiles": [
     "fantasy",
@@ -125,10 +97,3 @@ Lifecycle & API Interfaces:
   ]
 }
 ```
-
----
-
-## Clients Architecture
-1. **Android Native Client**: Jetpack Compose wrapper connecting `ArcanumViewModel` & `RenderEngine` to `ArcanumEngine`.
-2. **PWA Client**: Service Worker offline PWA powered by `arcanum-core.js` and `app.js`.
-3. **GitHub CI/CD Factory**: Automated Android APK build & GitHub Pages PWA deployment.

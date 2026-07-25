@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -18,6 +19,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.core.protocol.ALPMessage
+import com.example.core.protocol.ArcanumLinkAdapter
 import com.example.ui.components.CardArtGraphic
 import com.example.ui.components.RarityBadge
 import com.example.ui.components.getRarityColor
@@ -42,7 +45,7 @@ fun EditorScreen(
     modifier: Modifier = Modifier
 ) {
     var selectedTab by remember { mutableStateOf(0) }
-    val tabs = listOf("🎨 Рендерер", "⚔️ Кузница", "⚗️ Лаборатория", "📚 Архив")
+    val tabs = listOf("🎨 Рендерер", "⚔️ Кузница", "⚗️ Лаборатория", "🔗 Протокол ALP", "📚 Архив")
 
     Column(
         modifier = modifier
@@ -66,10 +69,11 @@ fun EditorScreen(
         Spacer(modifier = Modifier.height(12.dp))
 
         // Studio Realm Navigation Tabs
-        TabRow(
+        ScrollableTabRow(
             selectedTabIndex = selectedTab,
             containerColor = MaterialTheme.colorScheme.surfaceVariant,
-            contentColor = GoldAccent
+            contentColor = GoldAccent,
+            edgePadding = 0.dp
         ) {
             tabs.forEachIndexed { index, title ->
                 Tab(
@@ -96,7 +100,8 @@ fun EditorScreen(
                 )
                 1 -> ForgeCardTab(onCreateCard = onCreateCard)
                 2 -> LaboratoryTab()
-                3 -> ArchiveDocsTab()
+                3 -> LinkProtocolTab()
+                4 -> ArchiveDocsTab()
             }
         }
     }
@@ -497,6 +502,116 @@ fun LabModuleCard(title: String, status: String, description: String) {
                 fontSize = 11.sp,
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
             )
+        }
+    }
+}
+
+@Composable
+fun LinkProtocolTab() {
+    val scrollState = rememberScrollState()
+    var inputPayload by remember { mutableStateOf("ALP2:card:hero_dragon:name=Древний Дракон;hp=250;str=45;rarity=legendary") }
+    var parseResult by remember { mutableStateOf<ALPMessage?>(null) }
+
+    val sampleMsg = remember {
+        ALPMessage(
+            entityType = "card",
+            entityId = "paladin_aether",
+            payload = mapOf(
+                "name" to "Святой Паладин",
+                "hp" to "150",
+                "str" to "28",
+                "rarity" to "epic",
+                "description" to "Рыцарь Небесного Ордена Arcanum"
+            )
+        )
+    }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(scrollState)
+    ) {
+        Text(
+            text = "ПРОТОКОЛ МЕЖСЕТЕВОГО ОБМЕНА (ALP v2.0)",
+            fontSize = 13.sp,
+            fontWeight = FontWeight.Bold,
+            color = GoldAccent
+        )
+        Text(
+            text = "Arcanum Link Protocol: передача существ, карт и миров через QR, файлы и универсальные ссылки.",
+            fontSize = 11.sp,
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Generated Sample Link
+        Surface(
+            shape = RoundedCornerShape(12.dp),
+            color = MaterialTheme.colorScheme.surfaceVariant,
+            border = BorderStroke(1.dp, GoldAccent.copy(alpha = 0.3f)),
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Column(modifier = Modifier.padding(14.dp)) {
+                Text(text = "📡 Сгенерированная полезная нагрузка ALP", fontSize = 12.sp, fontWeight = FontWeight.Bold, color = GoldLight)
+                Spacer(modifier = Modifier.height(6.dp))
+                
+                Text(text = "QR Payload:", fontSize = 10.sp, color = GoldAccent)
+                SelectionContainer {
+                    Text(text = sampleMsg.toQrPayload(), fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurface)
+                }
+
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(text = "Universal Link:", fontSize = 10.sp, color = GoldAccent)
+                SelectionContainer {
+                    Text(text = sampleMsg.toUniversalLink(), fontSize = 9.sp, color = CyanAccent)
+                }
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Parser Tester
+        Text(text = "📥 Декодер полезной нагрузки ALP", fontSize = 12.sp, fontWeight = FontWeight.Bold, color = GoldLight)
+        Spacer(modifier = Modifier.height(6.dp))
+
+        OutlinedTextField(
+            value = inputPayload,
+            onValueChange = { inputPayload = it },
+            label = { Text("Вставь ALP2 payload или QR код") },
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Button(
+            onClick = {
+                parseResult = ALPMessage.fromQrPayload(inputPayload)
+            },
+            colors = ButtonDefaults.buttonColors(containerColor = GoldAccent),
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("🔍 Декодировать & Распознать сущность", fontSize = 12.sp, color = Color.Black, fontWeight = FontWeight.Bold)
+        }
+
+        parseResult?.let { msg ->
+            Spacer(modifier = Modifier.height(12.dp))
+            Surface(
+                shape = RoundedCornerShape(12.dp),
+                color = MaterialTheme.colorScheme.surfaceVariant,
+                border = BorderStroke(1.5.dp, GoldAccent),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Column(modifier = Modifier.padding(12.dp)) {
+                    Text(text = "✅ УСПЕШНО РАСПОЗНАНО:", fontSize = 11.sp, fontWeight = FontWeight.Bold, color = GoldAccent)
+                    Text(text = "Тип сущности: ${msg.entityType}", fontSize = 11.sp)
+                    Text(text = "ID сущности: ${msg.entityId}", fontSize = 11.sp)
+                    Text(text = "Поля:", fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                    msg.payload.forEach { (k, v) ->
+                        Text(text = " • $k: $v", fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f))
+                    }
+                }
+            }
         }
     }
 }

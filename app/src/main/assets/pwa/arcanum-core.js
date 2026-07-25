@@ -196,6 +196,42 @@ class SaveSyncModuleJS extends BaseArcanumModuleJS {
   }
 }
 
+class ArcanumLinkProtocolJS {
+  static exportToALPMessage(entityType, entityId, payload) {
+    return {
+      v: "2.0",
+      type: entityType,
+      id: entityId,
+      payload: payload || {},
+      timestamp: Date.now()
+    };
+  }
+
+  static toUniversalLink(alpMessage) {
+    const raw = JSON.stringify(alpMessage);
+    return `arcanum://link?data=${encodeURIComponent(raw)}`;
+  }
+
+  static toQrPayload(alpMessage) {
+    const kv = Object.entries(alpMessage.payload || {}).map(([k, v]) => `${k}=${v}`).join(";");
+    return `ALP2:${alpMessage.type}:${alpMessage.id}:${kv}`;
+  }
+
+  static parseQrPayload(qrText) {
+    if (!qrText || !qrText.startsWith("ALP2:")) return null;
+    const parts = qrText.split(":");
+    if (parts.length < 4) return null;
+    const type = parts[1];
+    const id = parts[2];
+    const payload = {};
+    parts[3].split(";").forEach(pair => {
+      const [k, v] = pair.split("=");
+      if (k && v) payload[k] = v;
+    });
+    return { v: "2.0", type, id, payload, timestamp: Date.now() };
+  }
+}
+
 class ArcanumEngineJS {
   constructor() {
     this.context = new EngineContextJS();
