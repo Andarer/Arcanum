@@ -1,75 +1,26 @@
-# Arcanum Micro-Module Specification & Interface Catalog v2.0
+# Arcanum Decoupled Micro-Modules Specification v2.4
 
-## Overview
-Every game feature in Arcanum operates as an isolated, independent micro-module conforming to `module.json`, `ModuleManifest`, and explicit Kotlin / JS interface contracts.
+## Module Registry Architecture
+Arcanum Evolution features a decoupled micro-module architecture both in pure Kotlin Core (`com.example.core.engine`) and pure JavaScript Core (`arcanum-core.js`).
 
----
+## Active Modules & Interfaces
 
-## Active Core Modules & Interfaces (`v2.0`)
+### 1. `IBattleModule` / `BattleModule`
+- **Purpose**: Handles turn-based Card RPG combat, hero HP, enemy AI strikes, magic spell casting, and battle logs.
+- **Events Published**: `combat_started`, `combat_turn_ended`, `combat_ended`, `hero_health_changed`.
 
-### 1. `battle` — Battle Core Module
-- **ID**: `battle`
-- **Interface**: `IBattleModule`
-- **Version**: 1.0.0
-- **Description**: Turn-based combat calculations, damage resolution, status effects, and arena mechanics.
-- **Contract Methods**:
-  - `calculateDamage(attackerStr: Int, defenderDef: Int): Int`
-  - `executeTurn(playerAction: String, enemyAction: String): Map<String, Any>`
+### 2. `ICardsModule` / `CardsModule`
+- **Purpose**: Manages collectible card decks, elemental affinities (Fire, Water, Earth, Air, Light, Shadow), mana costs, and card stats.
+- **Events Published**: `card_drawn`, `card_played`, `deck_shuffled`.
 
-### 2. `cards` — Cards & Evolution Module
-- **ID**: `cards`
-- **Interface**: `ICardsModule`
-- **Version**: 1.0.0
-- **Description**: Card collection, deck building, leveling, transcending, and special abilities.
-- **Contract Methods**:
-  - `canEvolveCard(cardLevel: Int, copiesCount: Int): Boolean`
-  - `calculateEvolvedStats(baseStr: Int, level: Int, tier: Int): Int`
+### 3. `IInventoryModule` / `InventoryModule`
+- **Purpose**: Manages item slots, gold currency, magical gems, potions, weapons, and armor crafting materials.
+- **Events Published**: `item_added`, `item_removed`, `gold_changed`, `gems_changed`.
 
-### 3. `inventory` — Inventory & Crafting Module
-- **ID**: `inventory`
-- **Interface**: `IInventoryModule`
-- **Version**: 1.0.0
-- **Description**: Item stacks, alchemy crafting, forge recipes, and chest looting.
-- **Contract Methods**:
-  - `canCraftItem(recipeId: String, currentIngredients: Map<String, Int>): Boolean`
+### 4. `IQuestModule` / `QuestModule`
+- **Purpose**: Tracks campaign quests, stage progress, reward payouts, and world map node progression.
+- **Events Published**: `quest_accepted`, `quest_completed`, `stage_unlocked`.
 
-### 4. `quest` — Quest & Achievements Module
-- **ID**: `quest`
-- **Interface**: `IQuestModule`
-- **Version**: 1.0.0
-- **Description**: Diary quests, achievement trackers, progress milestones, and rewards.
-- **Contract Methods**:
-  - `evaluateProgress(statKey: String, currentVal: Int, targetVal: Int): Boolean`
-
-### 5. `save_sync` — Save & Cross-Platform Sync Module
-- **ID**: `save_sync`
-- **Interface**: `ISaveSyncModule`
-- **Version**: 1.0.0
-- **Description**: Universal JSON state export/import, Room persistence, and LocalStorage sync.
-- **Contract Methods**:
-  - `serializeState(stateData: Map<String, Any>): String`
-
-### 6. `editor` — Arcanum Studio Architect Tower
-- **ID**: `editor`
-- **Interface**: `IEditorModule`
-- **Version**: 1.0.0
-- **Description**: Visual card forge, AI mechanics synthesizer, and live preview desktop.
-- **Contract Methods**:
-  - `validateCardRecipe(cardData: Map<String, Any>): Boolean`
-
-### 7. `ui_render` — Render Engine & Shaders Module
-- **ID**: `ui_render`
-- **Interface**: `IUIRenderModule`
-- **Version**: 1.0.0
-- **Description**: Provides active RenderProfiles (Fantasy, Dark, SciFi, Cyberpunk, Pixel, Console, Minimal) and dynamic theme composition.
-- **Contract Methods**:
-  - `getRenderStyle(profile: String): RenderStyleSpec`
-
-### 8. `alp_link` — Arcanum Link Protocol Module (v2.0)
-- **ID**: `alp_link`
-- **Interface**: `IProtocolModule`
-- **Version**: 2.0.0
-- **Description**: Encodes, serializes, and exchanges entities, cards, and worlds via QR codes, files, and `arcanum://link` URLs.
-- **Contract Methods**:
-  - `exportToALPString(entity: Entity): String`
-  - `importFromALPString(alpJson: String): Entity`
+### 5. `ISaveSyncModule` / `SaveSyncModule`
+- **Purpose**: Handles LocalStorage, IndexedDB, and JSON export/import save state persistence.
+- **Events Published**: `save_state_exported`, `save_state_imported`, `auto_saved`.

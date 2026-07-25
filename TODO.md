@@ -1,21 +1,17 @@
 # Arcanum Active TODO Backlog
 
-## Core Engine & Protocols
-- [x] Create Core Micro-Module Engine (`com.example.core.engine`)
-- [x] Create PWA Web Engine mirror (`arcanum-core.js`)
-- [x] Implement ECS, System Pipeline & Room Entity Adapters (`EntityAdapters.kt`, `System.kt`)
-- [x] Implement Typed Module Interfaces (`IBattleModule`, `ICardsModule`, `IInventoryModule`, `IQuestModule`, `ISaveSyncModule`, `IEditorModule`, `IUIRenderModule`, `IProtocolModule`)
-- [x] Implement Arcanum Link Protocol ALP v2.0 (`ArcanumLinkProtocol.kt` & `ArcanumLinkProtocolJS`)
-- [x] Boot Composition (`boot.json`)
+## ARCANUM EVOLUTION :: META CONSTITUTION ERA (v3.1.0)
+- [x] Implement `.apkg` Package Format Manager (`arcanum-package.js`)
+- [x] Create Interactive Living Universe Map (Universe -> Platform -> Client -> Module -> Component -> Class -> Event -> Line of Docs)
+- [x] Implement Arcanum Explainability Engine (`ArExplainable`)
+- [x] Build Embedded Arcanum Academy & Experimental Laboratory
+- [x] Save Master AI Prompt v3.1 in `/docs/ai/prompts/meta_constitution_v3.1.md`
+- [x] Create `/docs/ai/constitution/meta_constitution.md`
+- [x] Update Service Worker v3.1 (`sw.js`) offline asset cache
+- [x] Verify full Android Gradle compilation via `compile_applet`
 
-## UI Engine & Arcanum OS
-- [x] Adopt Arcanum Evolution UI Constitution v1.0 (`UI_CONSTITUTION.md`)
-- [x] Implement `RenderEngine.kt` with Fantasy, Dark, SciFi, Cyberpunk, Pixel, Console, and Minimal profiles
-- [x] Rebuild `EditorScreen.kt` as Arcanum Studio Architect's Tower with ALP Decoder tab
-- [x] Update `HomeScreen.kt` menu navigation to in-world locations
-- [x] Connect `ArcanumViewModel` active render profile state flow to Compose theme
-
-## Documentation & CI/CD Factory
-- [x] GitHub Pages deployment workflow (`deploy-pwa-gh-pages.yml`)
-- [x] Android Release APK build workflow (`build-release-apk.yml`)
-- [x] Complete synchronized platform documentation suite (`AI_CONSTITUTION.md`, `UI_CONSTITUTION.md`, `ARCHITECTURE.md`, `MODULES.md`, `API.md`, `ROADMAP.md`, `CHANGELOG.md`, `DECISIONS.md`, `TODO.md`, `PROJECT_STATE.md`)
+## Platform Foundation & Android Shell
+- [x] Single-page PWA universe hosting Game, Editor, Specs, Architecture Graph, Twin & Score, `.apkg` Package Manager, Living Universe Map, Academy & Laboratory
+- [x] Configure `PwaWebScreen.kt` WebView container
+- [x] Implement `@JavascriptInterface` `ArcanumNativeBridge` (`vibrate`, `showToast`, `getDeviceInfo`)
+- [x] Verify compilation via `compile_applet`

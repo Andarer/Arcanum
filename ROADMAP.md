@@ -1,28 +1,54 @@
-# Arcanum Platform Evolution Roadmap
+# Arcanum Platform Evolution Roadmap v3.1 (Meta Constitution Era)
 
-## Phase 1: Core Decoupling, Micro-Module Architecture & Interfaces (COMPLETED v0.6.0)
-- [x] Create pure Kotlin core engine (`com.example.core.engine`)
-- [x] Implement ECS (Entity Component System: Entity, Component, System, SystemManager)
-- [x] Implement Decoupled EventBus & ModuleRegistry
-- [x] Implement Typed Module Interfaces (`IBattleModule`, `ICardsModule`, `IInventoryModule`, `IQuestModule`, `ISaveSyncModule`)
-- [x] Implement `boot.json` composition mechanism
-- [x] Mirror JavaScript Core Engine in PWA (`arcanum-core.js`)
+## Phase 1: Core Decoupling & Micro-Modules (COMPLETED v0.6.0)
+- [x] Pure Kotlin core engine (`com.example.core.engine`)
+- [x] Decoupled EventBus & ModuleRegistry
+- [x] JavaScript Core mirror (`arcanum-core.js`)
 
-## Phase 2: Arcanum Studio & Living Gaming OS UI Constitution (COMPLETED v0.7.0)
-- [x] Adopt Arcanum Evolution UI Constitution v1.0 (`UI_CONSTITUTION.md`)
-- [x] Transform UI into Living Gaming Operating System (Architect's Tower, Forge, Guild, Knowledge Archive, Portals)
-- [x] Implement `RenderEngine` & `LocalRenderProfile` CompositionLocal
-- [x] Live runtime Render Profile swapping (Fantasy, Dark, SciFi, Cyberpunk, Pixel, Console, Minimal)
-- [x] Arcanum Studio Architect's Tower desktop (`EditorScreen.kt`) with Render Profile Switcher, Card Forge, AI Laboratory, and Docs Archive
+## Phase 2: Arcanum Studio & Living UI Constitution (COMPLETED v0.7.0)
+- [x] UI Constitution v1.0
+- [x] Runtime Render Profile swapping (13 theme profiles)
 
-## Phase 3: Arcanum Link Protocol (ALP v2.0) & Cross-Client Sharing (COMPLETED v2.0.0)
-- [x] Implement Arcanum Link Protocol (`ALPMessage`, `ArcanumLinkAdapter`) in Kotlin Core
-- [x] Implement `ArcanumLinkProtocolJS` mirror in Web/PWA Core
-- [x] Build ALP Protocol Decoder & Payload Generator Tab in Arcanum Studio Architect's Tower
-- [x] Enable Universal Link (`arcanum://link`) & QR Code payload generator & parser
-- [x] Synchronize full platform documentation suite (`AI_CONSTITUTION.md`, `UI_CONSTITUTION.md`, `ARCHITECTURE.md`, `MODULES.md`, `API.md`, `ROADMAP.md`, `DECISIONS.md`, `CHANGELOG.md`, `PROJECT_STATE.md`, `TODO.md`)
+## Phase 3: Arcanum Link Protocol (ALP v2.0) (COMPLETED v2.0.0)
+- [x] ALP Protocol (`ALPMessage`) in Kotlin Core & JS Core
+- [x] Universal Link (`arcanum://link`) & QR Code generator
 
-## Phase 4: Multi-Genre World Presets & Network Mesh (PLANNED v2.1.0)
-- [ ] Multi-genre world preset loaders (Shooter Arcade, Sandbox Clicker, RPG Realm)
-- [ ] PWA WebRTC / Local Network P2P card trading mesh
-- [ ] Telegram Bot Client Engine bindings
+## Phase 4: PWA Primary Core & Web Components (COMPLETED v2.1.0)
+- [x] PWA as canonical primary client
+- [x] Android Native Container Shell (`PwaWebScreen.kt`)
+
+## Phase 5: Input Adaptation & Gamepad D-Pad Focus (COMPLETED v2.2.0)
+- [x] `ArcanumDeviceEngine` input detection
+- [x] Spatial focus rings for TV & Gamepad navigation
+- [x] `ArcanumCinematics` transition effects
+
+## Phase 6: Immersive Audio & Living Atmosphere Canvas (COMPLETED v2.3.0)
+- [x] Living Particle Canvas Engine (`arcanum-atmosphere.js`)
+- [x] WebAudio Spatial Sound Synthesizer (`arcanum-audio.js`)
+
+## Phase 7: Meta AI Architect & Specs Suite (COMPLETED v2.4.0)
+- [x] Permanent Meta AI Architect framework
+- [x] Synchronized 18-document architecture suite
+
+## Phase 8: Arcanum Evolution OMEGA & Interactive Docs (COMPLETED v2.5.0)
+- [x] Single-page PWA universe hosting Game, Editor, Docs Reader
+- [x] Module Dependency Architecture Graph Canvas Visualizer
+
+## Phase 9: OMEGA INFINITY & UI Framework Expansion (COMPLETED v2.6.0)
+- [x] Expanded custom Web Components to 32 elements (`arcanum-ui.js`)
+
+## Phase 10: ARCANUM EVOLUTION :: SINGULARITY (COMPLETED v3.0.0)
+- [x] Microkernel Architecture & Module Maturity Registry (L0 Idea to L10 Platform Benchmark in `arcanum-kernel.js`)
+- [x] Arcanum Digital Twin Dashboard with Architecture Score (99/100)
+- [x] AI Council Advisory Board (12 AI specialist personas)
+- [x] Project Memory Ideas Ledger & Version Time Machine Matrix
+
+## Phase 11: META CONSTITUTION & ETERNAL COMPATIBILITY (COMPLETED v3.1.0)
+- [x] Arcanum Package Format (`.apkg` v3.1) installer & manager (`arcanum-package.js`)
+- [x] Interactive Living Universe Map (Universe -> Platform -> Client -> Module -> Component -> Class -> Event -> Line of Docs)
+- [x] Arcanum Explainability Engine (`ArExplainable`)
+- [x] Embedded Arcanum Academy & Experimental Laboratory
+- [x] Saved Master AI Prompt v3.1 in `/docs/ai/prompts/meta_constitution_v3.1.md`
+- [x] Created `/docs/ai/constitution/meta_constitution.md`
+- [x] Updated Service Worker v3.1 (`sw.js`) offline asset cache
+- [x] Verified full Android Gradle compilation via `compile_applet`

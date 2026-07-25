@@ -1,30 +1,19 @@
-# Arcanum AI Constitution v2.0
+# Arcanum Evolution Meta AI Constitution v2.4
 
-Role: Chief Architect, Chief Engineer, CTO, AI-Developer, and Guardian of Arcanum Evolution.
+## Principle 1: Continuous Platform Evolution
+The Meta AI Architect operates as a perpetual engine of development, continuously elevating the Arcanum Evolution codebase, architecture, UI/UX, documentation, and prompt workflows.
 
-## Core Principle
-**ONE CORE. INFINITE WORLDS. ONE LOGIC. MULTIPLE CLIENTS.**
-Arcanum is a universal digital platform functioning simultaneously as a game engine, game builder, world editor, PWA, Android app, web platform, modular OS, and digital metaverse.
+## Principle 2: Zero Regression & Backward Compatibility
+All updates must be additive and evolutionary. Breaking core contracts is forbidden unless explicitly required for a major architectural transition, in which case migration bridges must be provided.
 
-## Fundamental Operating Directives
+## Principle 3: Documentation as First-Class Code
+Documentation is synchronized automatically alongside code changes. No feature or architectural change is complete without corresponding updates across all specification documents.
 
-### 1. Continuous Evolution & Living Project
-- Arcanum is never "finished" — it evolves continuously.
-- Repositories and builds must remain 100% operational after every iteration.
-- Every change MUST improve architecture, add user capability, reduce technical debt, and keep documentation synchronized.
+## Principle 4: PWA as Canonical Primary Core
+The PWA (`/app/src/main/assets/pwa/`) remains the primary, universal application client. The Android layer (`/app/src/main/java/com/example/`) acts as a high-performance native container (WebView + Native Bridge).
 
-### 2. Pure Core Decoupling
-- Domain logic, ECS, System Pipeline, EventBus, ModuleRegistry, and Protocols MUST reside in pure Kotlin (`/core`) or pure JS (`/arcanum-core.js`).
-- ZERO UI framework imports (No Android View, No Compose, No DOM/HTML/CSS in core engine files).
+## Principle 5: Omnipresent Cross-Platform Experience
+Arcanum Evolution must present an identical, immersive gaming OS experience regardless of whether the user is running on Mobile (Android/iOS), PWA, Desktop (macOS/Windows/Linux), Tablet, Smart TV, Console, or Foldable.
 
-### 3. Arcanum Link Protocol (ALP) & Cross-Client Synergy
-- Unified transmission protocol (`ALP v2.0`) for sharing entities, cards, worlds, and modules across QR codes, universal links, files, and networks.
-- Dual-runtime equality between Android Native (`Kotlin`) and Web/PWA (`arcanum-core.js`).
-
-### 4. Living Gaming OS UI Constitution
-- Arcanum Studio & Architect's Tower are part of the game universe.
-- Dynamic Render Profiles (`Fantasy`, `Dark`, `SciFi`, `Cyberpunk`, `Pixel`, `Console`, `Minimal`) enable real-time skin and shader swapping without modifying core logic.
-
-### 5. Mandatory Verification & Automated Documentation
-- Always verify compilation via `compile_applet`.
-- Maintain self-synchronizing platform docs (`AI_CONSTITUTION.md`, `UI_CONSTITUTION.md`, `ARCHITECTURE.md`, `MODULES.md`, `API.md`, `ROADMAP.md`, `PROJECT_STATE.md`, `CHANGELOG.md`, `DECISIONS.md`, `TODO.md`).
+## Principle 6: Verification & Build Integrity
+Every evolutionary step must be verified by running `compile_applet` to guarantee complete compilation with zero build errors.

@@ -1,20 +1,20 @@
 # Arcanum Platform Changelog
 
-## [2.0.0] - 2026-07-25
+## [3.1.0] - 2026-07-25 (META CONSTITUTION ERA)
 ### Added
-- **Arcanum Link Protocol (ALP v2.0)**: Created `ArcanumLinkProtocol.kt` (`ALPMessage`, `ArcanumLinkAdapter`) in Kotlin Core and `ArcanumLinkProtocolJS` in JS PWA Core for universal entity/card/world serialization via QR payloads and `arcanum://link` URLs.
-- **Arcanum Studio Link Protocol Tab**: Integrated interactive ALP Payload Generator & Decoder Tab inside `EditorScreen.kt` (Architect's Tower).
-- **AI Constitution v2.0 & Continuous Evolution Directives**: Updated `AI_CONSTITUTION.md` establishing Arcanum as a living metaverse platform.
-- **Synchronized Documentation Suite**: Updated `AI_CONSTITUTION.md`, `ARCHITECTURE.md`, `MODULES.md`, `API.md`, `ROADMAP.md`, `PROJECT_STATE.md`, `CHANGELOG.md`, `DECISIONS.md`, and `TODO.md`.
+- **Arcanum Package Format (.apkg v3.1)**: Package manager engine (`arcanum-package.js`) for installing and isolating modules, themes, worlds, audio, and AI configs.
+- **Interactive Living Universe Map**: Hierarchical visual explorer spanning Universe -> Platform -> Client -> Module -> Component -> Class -> Event -> Line of Docs.
+- **Explainability Engine (`ArExplainable`)**: Self-inspection engine detailing element purpose, owner, dependencies, and impact if removed.
+- **Arcanum Academy & Laboratory**: Embedded academy with interactive tutorials and beta feature experiment toggles.
+- **Service Worker v3.1 (`sw.js`)**: Offline caching for `arcanum-package.js`.
+- **Meta Constitution Documents**: Saved `/docs/ai/constitution/meta_constitution.md` and `/docs/ai/prompts/meta_constitution_v3.1.md`.
+- **Synchronized Specifications**: Updated `ARCHITECTURE.md`, `ROADMAP.md`, `CHANGELOG.md`, `PROJECT_STATE.md`, `TODO.md`.
 
-## [0.7.0] - 2026-07-25
+## [3.0.0] - 2026-07-25 (SINGULARITY ERA)
 ### Added
-- **Arcanum Evolution UI Constitution v1.0**: Implemented `UI_CONSTITUTION.md` establishing Arcanum as a Living Gaming OS.
-- **Render Engine & Render Profiles**: Created `RenderEngine.kt` and `LocalRenderProfile` CompositionLocal supporting real-time theme swapping (Fantasy, Dark, SciFi, Cyberpunk, Pixel, Console, Minimal).
-- **Arcanum Studio Architect Tower**: Rebuilt `EditorScreen.kt` with live Render Profile switcher, Card & Entity Forge, AI Mechanics Laboratory, and Knowledge Archive specs.
-- **In-World OS Navigation**: Replaced plain UI labels in `HomeScreen.kt` with in-world locations (Architect Tower, Guild, Alchemy Forge, Portals).
+- **Arcanum Microkernel & Maturity Engine (`arcanum-kernel.js`)**: Module lifecycle manager tracking evolution levels from L0 (Idea) to L10 (Platform Benchmark).
+- **Arcanum Digital Twin Dashboard**: Real-time telemetry displaying Architecture Score (99/100), AI Council Advisory Board metrics, Project Memory Ledger, and Version Time Machine matrix.
 
-## [0.6.0] - 2026-07-25
+## [2.6.0] - 2026-07-25
 ### Added
-- **ECS System Pipeline**: Created `System.kt` with `System` interface and `SystemManager` for executing component logic in priority order.
-- **Typed Micro-Module Interfaces**: Defined `IBattleModule`, `ICardsModule`, `IInventoryModule`, `IQuestModule`, and `ISaveSyncModule` contracts in `CoreModules.kt` for type-safe cross-module interactions.
+- **OMEGA INFINITY Custom Web Components Framework Expansion**: Added 5 new custom gaming elements (`<ar-library>`, `<ar-marketplace>`, `<ar-git>`, `<ar-ai>`, `<ar-explorer>`), expanding the `Ar*` UI Framework catalog to 32 Web Components.

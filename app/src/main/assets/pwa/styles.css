@@ -12,6 +12,352 @@
   --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
+/* Dynamic Render Profiles Overrides */
+[data-render-profile="fantasy"] {
+  --bg-dark: #0b0c10;
+  --bg-surface: #1f2833;
+  --bg-card: #181d26;
+  --gold-accent: #c5a059;
+  --gold-light: #f3e5ab;
+  --purple-accent: #9b51e0;
+}
+
+[data-render-profile="dark"] {
+  --bg-dark: #050508;
+  --bg-surface: #10121a;
+  --bg-card: #0d0f16;
+  --gold-accent: #8b0000;
+  --gold-light: #ff4d4d;
+  --purple-accent: #4a0072;
+}
+
+[data-render-profile="scifi"] {
+  --bg-dark: #020b14;
+  --bg-surface: #0a192f;
+  --bg-card: #112240;
+  --gold-accent: #64ffda;
+  --gold-light: #ccd6f6;
+  --purple-accent: #00bcd4;
+}
+
+[data-render-profile="cyberpunk"] {
+  --bg-dark: #0d0221;
+  --bg-surface: #0f0826;
+  --bg-card: #261447;
+  --gold-accent: #ff007f;
+  --gold-light: #00f0ff;
+  --purple-accent: #ffe600;
+}
+
+[data-render-profile="pixel"] {
+  --bg-dark: #1b1233;
+  --bg-surface: #2c1e4a;
+  --bg-card: #3d2b63;
+  --gold-accent: #ffaa00;
+  --gold-light: #ffff55;
+  --purple-accent: #ff55ff;
+}
+
+[data-render-profile="console"] {
+  --bg-dark: #000000;
+  --bg-surface: #0a0a0a;
+  --bg-card: #141414;
+  --gold-accent: #00ff00;
+  --gold-light: #33ff33;
+  --purple-accent: #00cc00;
+}
+
+[data-render-profile="minimal"] {
+  --bg-dark: #121212;
+  --bg-surface: #1e1e1e;
+  --bg-card: #252525;
+  --gold-accent: #e0e0e0;
+  --gold-light: #ffffff;
+  --purple-accent: #9e9e9e;
+}
+
+[data-render-profile="steam"] {
+  --bg-dark: #171a21;
+  --bg-surface: #1b2838;
+  --bg-card: #2a475e;
+  --gold-accent: #66c0f4;
+  --gold-light: #c7d5e0;
+  --purple-accent: #c7d5e0;
+}
+
+[data-render-profile="playstation"] {
+  --bg-dark: #00122e;
+  --bg-surface: #002254;
+  --bg-card: #003077;
+  --gold-accent: #0070d1;
+  --gold-light: #66b2ff;
+  --purple-accent: #00439c;
+}
+
+[data-render-profile="nintendo"] {
+  --bg-dark: #1a0000;
+  --bg-surface: #330000;
+  --bg-card: #4d0000;
+  --gold-accent: #e60012;
+  --gold-light: #ff6666;
+  --purple-accent: #cc0000;
+}
+
+[data-render-profile="material"] {
+  --bg-dark: #141218;
+  --bg-surface: #211f26;
+  --bg-card: #2b2930;
+  --gold-accent: #d0bcff;
+  --gold-light: #e8def8;
+  --purple-accent: #ccc7f5;
+}
+
+[data-render-profile="glass"] {
+  --bg-dark: #0f172a;
+  --bg-surface: rgba(30, 41, 59, 0.7);
+  --bg-card: rgba(51, 65, 85, 0.5);
+  --gold-accent: #38bdf8;
+  --gold-light: #e0f2fe;
+  --purple-accent: #818cf8;
+}
+
+[data-render-profile="neon"] {
+  --bg-dark: #03001e;
+  --bg-surface: #7303c0;
+  --bg-card: #ec38bc;
+  --gold-accent: #fdeff9;
+  --gold-light: #ffffff;
+  --purple-accent: #00f2fe;
+}
+
+/* Arcanum UI Web Components Default Classes */
+.ar-ui-button, ar-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, var(--gold-accent) 0%, rgba(0,0,0,0.3) 100%);
+  color: #000;
+  font-weight: 800;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--gold-light);
+  cursor: pointer;
+  font-size: 11px;
+  transition: transform 0.15s ease, filter 0.15s ease;
+  user-select: none;
+}
+
+.ar-ui-button:hover, ar-button:hover {
+  filter: brightness(1.15);
+  transform: translateY(-1px);
+}
+
+.ar-ui-panel, ar-panel {
+  display: block;
+  background: var(--bg-surface);
+  border: 1px solid var(--gold-accent);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+.ar-ui-card, ar-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 1.5px solid var(--gold-accent);
+  border-radius: 10px;
+  padding: 8px;
+}
+
+.ar-ui-dock, ar-dock {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: rgba(16, 18, 26, 0.92);
+  backdrop-filter: blur(10px);
+  border-top: 1.5px solid var(--gold-accent);
+  padding: 8px 12px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+}
+
+.ar-ui-sidebar, ar-sidebar {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-surface);
+  border-right: 1px solid var(--gold-accent);
+  padding: 12px;
+  width: 240px;
+  min-height: 100vh;
+}
+
+.ar-ui-toolbar, ar-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.03);
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.ar-ui-status-bar, ar-status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #000;
+  color: var(--gold-accent);
+  font-size: 10px;
+  font-weight: bold;
+  padding: 4px 12px;
+  border-bottom: 1px solid var(--gold-accent);
+}
+
+.ar-ui-dialogue, ar-dialogue {
+  display: block;
+  background: rgba(16, 18, 26, 0.95);
+  border: 1px solid var(--gold-accent);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+}
+
+.ar-ui-toast, ar-toast {
+  display: inline-block;
+  background: var(--gold-accent);
+  color: #000;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 11px;
+}
+
+.ar-ui-console, ar-console {
+  display: block;
+  background: #050508;
+  color: #00ff00;
+  font-family: monospace;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #00cc00;
+}
+
+.ar-ui-settings, ar-settings {
+  display: block;
+  background: var(--bg-surface);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid var(--gold-accent);
+}
+
+.ar-ui-library, ar-library {
+  display: block;
+  background: rgba(16, 18, 26, 0.95);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid var(--gold-accent);
+}
+
+.ar-ui-marketplace, ar-marketplace {
+  display: block;
+  background: rgba(20, 24, 36, 0.95);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid var(--purple-accent);
+}
+
+.ar-ui-git, ar-git {
+  display: block;
+  background: #090d16;
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid #30363d;
+}
+
+.ar-ui-ai, ar-ai {
+  display: block;
+  background: rgba(15, 23, 42, 0.95);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid #38bdf8;
+}
+
+.ar-ui-explorer, ar-explorer {
+  display: block;
+  background: rgba(10, 14, 23, 0.95);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid var(--gold-accent);
+}
+
+/* Spatial Focus Ring for TV & Gamepad Navigation */
+:focus-visible, button:focus, a:focus, input:focus, select:focus, .pwa-nav-btn:focus, ar-button:focus {
+  outline: 3px solid var(--gold-light) !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 16px var(--gold-accent) !important;
+  transform: scale(1.04);
+}
+
+/* Cinematic Transitions FX */
+.fx-transition-zoom {
+  animation: arcanumZoomIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.fx-transition-fade {
+  animation: arcanumFadeIn 0.3s ease-in-out;
+}
+
+.fx-transition-slide {
+  animation: arcanumSlideUp 0.35s ease-out;
+}
+
+.fx-screen-shake {
+  animation: arcanumShake 0.3s ease-in-out;
+}
+
+@keyframes arcanumShake {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-6px, 4px); }
+  40% { transform: translate(6px, -4px); }
+  60% { transform: translate(-4px, -2px); }
+  80% { transform: translate(4px, 2px); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes arcanumZoomIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes arcanumFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes arcanumSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Cross-Platform Device Adaptation Overrides */
+[data-device-type="desktop"] .main-content {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+[data-device-type="tv"], [data-device-type="console"] {
+  font-size: 115%;
+}
+
+[data-device-type="tv"] .btn-action, [data-device-type="console"] .btn-action {
+  padding: 14px 24px;
+  font-size: 14px;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;

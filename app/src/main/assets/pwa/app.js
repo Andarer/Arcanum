@@ -121,6 +121,23 @@ function switchTab(tabName) {
   if (tabName === 'deck') renderDeck();
   if (tabName === 'quests') renderQuests();
   if (tabName === 'chests') renderChests();
+  if (tabName === 'docs') {
+    if (window.ArcanumDocsEngine) {
+      window.ArcanumDocsEngine.renderDocList();
+      window.ArcanumDocsEngine.renderDocContent(window.ArcanumDocsEngine.activeDocKey);
+      window.ArcanumDocsEngine.renderArchitectureGraph();
+    }
+  }
+  if (tabName === 'kernel') {
+    if (window.ArcanumKernelEngine) {
+      window.ArcanumKernelEngine.renderDigitalTwinDashboard();
+    }
+  }
+  if (tabName === 'package') {
+    if (window.ArcanumPackageEngine) {
+      window.ArcanumPackageEngine.renderPackageManagerDashboard();
+    }
+  }
 }
 
 // PVP Arena Engine
@@ -929,11 +946,37 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-// Init
+// Init & Spatial Navigation
 window.addEventListener('DOMContentLoaded', () => {
   if (window.ArcanumEngine) {
     window.ArcanumEngine.boot();
   }
   loadGame();
+
+  // Update status bar device badge
+  const deviceBadge = document.getElementById('ar-device-badge');
+  if (deviceBadge && window.ArcanumDeviceEngine) {
+    const devType = window.ArcanumDeviceEngine.state.deviceType.toUpperCase();
+    deviceBadge.innerText = `⚡ Device: ${devType}`;
+  }
+
+  // Keyboard / Gamepad Arrow Keys Spatial Focus Navigation
+  window.addEventListener('keydown', (e) => {
+    if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+      const focusable = Array.from(document.querySelectorAll('button, a, input, select, [tabindex="0"], ar-button'));
+      if (focusable.length === 0) return;
+      const index = focusable.indexOf(document.activeElement);
+      if (index === -1) {
+        focusable[0].focus();
+      } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        const next = focusable[(index + 1) % focusable.length];
+        next.focus();
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        const prev = focusable[(index - 1 + focusable.length) % focusable.length];
+        prev.focus();
+      }
+    }
+  });
+
   switchTab('home');
 });

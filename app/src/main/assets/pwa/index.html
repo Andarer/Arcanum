@@ -9,6 +9,12 @@
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
+  <!-- System Status Bar -->
+  <ar-status-bar id="ar-sys-status-bar">
+    <span>🌐 Arcanum OS v2.1</span>
+    <span id="ar-device-badge">⚡ Device: PWA</span>
+  </ar-status-bar>
+
   <!-- Header HUD -->
   <header class="top-bar">
     <div class="brand">
@@ -59,6 +65,15 @@
     </button>
     <button class="tab-btn" data-tab="settings" onclick="switchTab('settings')">
       <span class="icon">⚙️</span> Опции
+    </button>
+    <button class="tab-btn" data-tab="docs" onclick="switchTab('docs')">
+      <span class="icon">📚</span> Дока
+    </button>
+    <button class="tab-btn" data-tab="kernel" onclick="switchTab('kernel')">
+      <span class="icon">🏛️</span> Twin & Score
+    </button>
+    <button class="tab-btn" data-tab="package" onclick="switchTab('package')">
+      <span class="icon">📦</span> .apkg & Map
     </button>
   </nav>
 
@@ -284,6 +299,24 @@
           Синхронизировано с системой сохранения PWA LocalStorage.
         </p>
         <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 12px;">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <label style="font-size: 11px; font-weight: 800; color: var(--gold-accent);">🎨 РЕНДЕР-ПРОФИЛЬ (RENDER PROFILE)</label>
+            <select id="pwa-render-profile-select" class="pwa-input" onchange="window.ArcanumRenderEngineWeb.setProfile(this.value)">
+              <option value="fantasy">🧙‍♂️ Fantasy (Фэнтези)</option>
+              <option value="dark">🌑 Dark (Тёмный Абисс)</option>
+              <option value="scifi">🚀 SciFi (Космос)</option>
+              <option value="cyberpunk">🏙️ Cyberpunk (Киберпанк)</option>
+              <option value="pixel">👾 Pixel (Пиксель)</option>
+              <option value="console">📟 Console (Матрица)</option>
+              <option value="minimal">⚪ Minimal (Минимализм)</option>
+              <option value="steam">🚂 Steam (Стимпанк)</option>
+              <option value="playstation">🎮 PlayStation</option>
+              <option value="nintendo">🔴 Nintendo</option>
+              <option value="material">📱 Material 3</option>
+              <option value="glass">🔮 Glass (Стекло)</option>
+              <option value="neon">⚡ Neon (Неон)</option>
+            </select>
+          </div>
           <a href="arcanum.apk" download class="btn-action" style="background: linear-gradient(135deg, #d4af37, #996515); color: black; font-weight: 800; text-decoration: none; text-align: center; display: block;">📲 Скачать APK (Android Приложение)</a>
           <button class="btn-action" style="background: var(--gold-accent); color: black; font-weight: 800;" onclick="exportPwaSaveJson()">📤 Экспорт Сохранения JSON</button>
           <button class="btn-action" style="background: var(--purple-accent); color: white; font-weight: 800;" onclick="importPwaSaveJson()">📥 Импорт Сохранения JSON</button>
@@ -294,6 +327,43 @@
           <button class="btn-action" style="background: var(--red-danger); color: white;" onclick="resetGame()">🔄 Сбросить Весь Прогресс</button>
         </div>
       </div>
+    </section>
+
+    <!-- Interactive Documentation & Architecture Reader -->
+    <section id="view-docs" class="screen-view">
+      <div style="background: rgba(16,18,26,0.95); border: 1.5px solid var(--gold-accent); border-radius: 12px; padding: 16px; margin-bottom: 16px;">
+        <h2 style="color: var(--gold-light); font-size: 18px; margin-bottom: 8px;">🏛️ ARCANUM LIVE DOCUMENTATION & ARCHITECTURE GRAPH</h2>
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">Интерактивный центр знаний платформы Arcanum Evolution: поиск, категории, интерактивное дерево архитектуры и спеки.</p>
+        
+        <!-- Search Input -->
+        <div style="margin-bottom: 12px;">
+          <input type="text" id="docs-search-input" placeholder="🔍 Поиск по спецификациям и архитектуре..." style="width: 100%; padding: 10px 14px; background: rgba(0,0,0,0.6); border: 1px solid var(--gold-accent); border-radius: 8px; color: white; font-size: 13px;" oninput="ArcanumDocsEngine.renderDocList(this.value)">
+        </div>
+
+        <div style="display: grid; grid-template-columns: minmax(180px, 240px) 1fr; gap: 16px;">
+          <!-- Doc List Sidebar -->
+          <div id="docs-list-container"></div>
+          
+          <!-- Doc Display Area -->
+          <div id="docs-display-area"></div>
+        </div>
+
+        <!-- Architecture Visualizer Graph -->
+        <div style="margin-top: 20px; background: rgba(0,0,0,0.6); border: 1px solid rgba(212,175,55,0.4); border-radius: 12px; padding: 16px;">
+          <h3 style="color: var(--gold-accent); font-size: 14px; margin-bottom: 10px;">🕸️ ИНТЕРАКТИВНЫЙ ГРАФ АРХИТЕКТУРЫ МОДУЛЕЙ</h3>
+          <canvas id="arch-graph-canvas" style="width: 100%; height: 260px; display: block; border-radius: 8px; background: #080a0f;"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- Digital Twin, Microkernel & Architecture Score Dashboard -->
+    <section id="view-kernel" class="screen-view">
+      <div id="digital-twin-container"></div>
+    </section>
+
+    <!-- Package Manager, Universe Map, Academy & Lab -->
+    <section id="view-package" class="screen-view">
+      <div id="package-manager-container"></div>
     </section>
   </main>
 
@@ -306,6 +376,12 @@
   <div id="toast" class="toast-msg"></div>
 
   <script src="./arcanum-core.js"></script>
+  <script src="./arcanum-atmosphere.js"></script>
+  <script src="./arcanum-audio.js"></script>
+  <script src="./arcanum-ui.js"></script>
+  <script src="./arcanum-docs.js"></script>
+  <script src="./arcanum-kernel.js"></script>
+  <script src="./arcanum-package.js"></script>
   <script src="./app.js"></script>
 </body>
 </html>
