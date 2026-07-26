@@ -46,15 +46,21 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
 
+      - name: Make gradlew executable
+        run: chmod +x gradlew
+
       - name: Build Android Debug APK
-        run: gradle assembleDebug --stacktrace
+        run: ./gradlew assembleDebug --stacktrace
 
       - name: Prepare Multi-Channel Digital Factory Artifacts
         run: |
           mkdir -p _public
           cp -r app/src/main/assets/pwa/* _public/
-          cp index.html _public/index.html
+          mkdir -p _public/app/src/main/assets/pwa
+          cp -r app/src/main/assets/pwa/* _public/app/src/main/assets/pwa/
+          cp index.html _public/landing.html || true
           cp app/build/outputs/apk/debug/app-debug.apk _public/arcanum.apk
+          cp app/build/outputs/apk/debug/app-debug.apk _public/app/src/main/assets/pwa/arcanum.apk
           
           # Generate SHA256 Checksum
           sha256sum _public/arcanum.apk > _public/arcanum.apk.sha256
@@ -62,7 +68,7 @@ jobs:
           # Generate Build Info Metadata
           cat <<EOF > _public/build-info.json
           {
-            "version": "3.2.0",
+            "version": "3.9.0",
             "channel": "${{ github.event.inputs.channel || 'stable' }}",
             "branch": "${{ github.ref_name }}",
             "commit": "${{ github.sha }}",

@@ -39,5 +39,8 @@ jobs:
           grep "CACHE_NAME" app/src/main/assets/pwa/sw.js
           echo "SUCCESS: Service Worker verified."
 
+      - name: Make gradlew executable
+        run: chmod +x gradlew
+
       - name: Compile Android Project & Test Build
-        run: gradle assembleDebug --stacktrace
+        run: ./gradlew assembleDebug --stacktrace

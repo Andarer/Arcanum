@@ -37,8 +37,11 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
 
+      - name: Make gradlew executable
+        run: chmod +x gradlew
+
       - name: Build Android Debug APK
-        run: gradle assembleDebug --stacktrace
+        run: ./gradlew assembleDebug --stacktrace
 
       - name: Copy APK to PWA assets
         run: |
@@ -51,8 +54,9 @@ jobs:
           cp -r app/src/main/assets/pwa/* _public/
           mkdir -p _public/app/src/main/assets/pwa
           cp -r app/src/main/assets/pwa/* _public/app/src/main/assets/pwa/
-          cp index.html _public/index.html
+          cp index.html _public/landing.html || true
           cp app/build/outputs/apk/debug/app-debug.apk _public/arcanum.apk
+          cp app/build/outputs/apk/debug/app-debug.apk _public/app/src/main/assets/pwa/arcanum.apk
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

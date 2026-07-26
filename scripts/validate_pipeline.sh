@@ -53,7 +53,7 @@ echo -e "${GREEN}✔ [06_build_core] Passed${NC}"
 
 # Stage 07: Build PWA
 echo -e "\n${CYAN}[Stage 07/17] 07_build_pwa :: Service Worker & Assets Bundle${NC}"
-grep -q "arcanum-pwa-v3.8" app/src/main/assets/pwa/sw.js || { echo "Outdated SW version"; exit 1; }
+grep -q "arcanum-pwa-v3.9" app/src/main/assets/pwa/sw.js || { echo "Outdated SW version"; exit 1; }
 echo -e "${GREEN}✔ [07_build_pwa] Passed${NC}"
 
 # Stage 08: Build Android

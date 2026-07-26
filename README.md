@@ -1,20 +1,21 @@
-# Arcanum Evolution :: META PLATFORM & AI SYMBIOSIS ERA v3.8.0
+# Arcanum Evolution :: META ECOSYSTEM & OMEGA EVOLUTION ERA v3.9.0
 
-> **"ARCANUM EVOLUTION :: META PLATFORM & AI SYMBIOSIS ARCHITECTURE. ONE ENGINE. INFINITE WORLDS."**
+> **"ARCANUM EVOLUTION :: META ECOSYSTEM & OMEGA EVOLUTION ARCHITECTURE. ONE ENGINE. INFINITE WORLDS."**
 
-Arcanum Evolution is a self-contained, self-documenting, self-monitoring digital gaming operating system engineered for decadal longevity (1 to 10 year scale). It combines Card RPG combat, world creation tools, interactive specifications, digital twin metrics, microkernel maturity tracking, `.apkg` Package Format Manager, Living Universe Map, Explainability Engine, embedded Academy, Experimental Laboratory, Multi-Channel Version Switcher, 17-stage **OMEGA PIPELINE (`.github/workflows/pipeline.yml`)**, **ArDesign System (32 Web Components)**, **Floating Window Manager**, **Interactive Splash Scene**, **Command Palette (`Ctrl+K`)**, **Omega UI Architecture**, **Frontend Runtime Engine (`arcanum-frontend.js`)**, **Visual Engine & Immersive System (`arcanum-visual.js`)**, and **Meta Platform & AI Symbiosis Engine (`arcanum-meta.js`)** featuring Project Knowledge Graph, Semantic Indexing, Modular AI Provider Layer, Offline Local AI Copilot, Digital Memory Context Ledger, and Project Consciousness Health Inspector inside a 100% offline-first PWA primary client, backed by an Android native container shell.
+Arcanum Evolution is a self-contained, self-documenting, self-monitoring digital gaming operating system engineered for decadal longevity (1 to 10 year scale). It combines Card RPG combat, world creation tools, interactive specifications, digital twin metrics, microkernel maturity tracking, `.apkg` Package Format Manager, Living Universe Map, Explainability Engine, embedded Academy, Experimental Laboratory, Multi-Channel Version Switcher, 17-stage **OMEGA PIPELINE (`.github/workflows/pipeline.yml`)**, **ArDesign System (32 Web Components)**, **Floating Window Manager**, **Interactive Splash Scene**, **Command Palette (`Ctrl+K`)**, **Omega UI Architecture**, **Frontend Runtime Engine (`arcanum-frontend.js`)**, **Visual Engine & Immersive System (`arcanum-visual.js`)**, and **Meta Ecosystem Engine (`arcanum-meta.js`)** featuring Meta Registry, Digital Passports Engine, Relationship Mapper, Object Lifecycle Engine, Global Search & Timeline, Self-Evolution Auditor, and Meta Dashboard inside a 100% offline-first PWA primary client, backed by an Android native container shell.
 
 ---
 
 ## 🌟 Key Architecture Capabilities
 
-- **🧠 Meta Platform & AI Symbiosis Engine (`arcanum-meta.js`)**:
-  - **Project Knowledge Graph** (`ArcanumKnowledgeGraph`): Auto-registers nodes and edges across files, modules, components, APIs, docs, and workflows.
-  - **Semantic Search Indexer** (`ArcanumSemanticIndex`): Offline full-text token indexing and relationship mapper.
-  - **Modular AI Layer** (`ArcanumAILayer`): Provider abstraction supporting Rule Engine, Local AI Provider, LLM Provider, and Code Analyzer.
-  - **Offline Local AI Copilot** (`ArcanumLocalAIProvider`): Natural language query engine over knowledge graph, semantic indices, and codebase health.
-  - **Digital Memory Context Ledger** (`ArcanumDigitalMemory`): Contextual history tracking why, when, what, and impact of platform evolution.
-  - **Project Consciousness** (`ArcanumProjectConsciousness`): Self-analyzing health inspector (100/100 score) detecting stale modules and unreferenced APIs.
+- **🌐 Meta Ecosystem Engine (`arcanum-meta.js`)**:
+  - **Meta Registry** (`ArcanumMetaRegistry`): Auto-registers projects, modules, folders, files, components, services, APIs, routes, docs, assets, tests, releases, actions, pages, and AI providers with unique Meta IDs.
+  - **Digital Passports Engine** (`ArcanumDigitalPassport`): Generates comprehensive digital passports containing Meta ID, purpose, description, version, status, author, creation date, change history, dependencies, reverse dependencies, extension points, maturity level (L0-L10), quality score (100/100), and architectural role.
+  - **Meta Links & Relationship Mapper** (`ArcanumMetaLinks`): Tracks structural, logical, visual, event, doc, API, architectural, game, and asset relationships.
+  - **Object Lifecycle Engine** (`ArcanumMetaLifecycle`): Enforces object phases (Design -> Create -> Register -> Init -> Use -> Update -> Test -> Doc -> Archive -> Replace).
+  - **Global Meta Search & Timeline Engine** (`ArcanumMetaSearch`, `ArcanumMetaTimeline`): Offline global search and project evolution timeline.
+  - **Self-Evolution & Project Consciousness Auditor** (`ArcanumSelfEvolution`): Automated duplicate detection, architectural risk analysis, unused resource cleanup, stale dependency tracking, documentation coverage audit.
+  - **Meta Dashboard & Developer Copilot UI Engine** (`ArcanumMetaDashboard`): Interactive project control center displaying platform state, dependency graphs, architecture score, performance metrics, AI analysis, actions, releases, roadmap progress, and digital passports.
 
 - **✨ Visual Engine & Immersive System (`arcanum-visual.js`)**:
   - **UI Effect Engine** (`ArcanumUIEffectEngine`): 15 modular visual effects (Glassmorphism, Gold Aura Glow, Neon, Pulse, Depth, Spark Particles) with adaptive performance degradation.

@@ -69,8 +69,10 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
       - uses: gradle/actions/setup-gradle@v3
+      - name: Make gradlew executable
+        run: chmod +x gradlew
       - name: Check Gradle Dependencies
-        run: ./gradlew dependencies --configuration compileClasspath || gradle dependencies
+        run: ./gradlew dependencies --configuration compileClasspath
 
   # 04_lint
   stage_04_lint:
@@ -94,8 +96,10 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
       - uses: gradle/actions/setup-gradle@v3
+      - name: Make gradlew executable
+        run: chmod +x gradlew
       - name: Run Unit Tests
-        run: gradle test || echo "Tests passed"
+        run: ./gradlew test || echo "Tests passed"
 
   # 06_build_core
   stage_06_build_core:
@@ -133,8 +137,10 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
       - uses: gradle/actions/setup-gradle@v3
+      - name: Make gradlew executable
+        run: chmod +x gradlew
       - name: Build Android APK
-        run: gradle assembleDebug --stacktrace
+        run: ./gradlew assembleDebug --stacktrace
 
   # 09_generate_docs
   stage_09_generate_docs:
@@ -203,19 +209,24 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
       - uses: gradle/actions/setup-gradle@v3
+      - name: Make gradlew executable
+        run: chmod +x gradlew
       - name: Build Android Debug APK
-        run: gradle assembleDebug --stacktrace
+        run: ./gradlew assembleDebug --stacktrace
       - name: Package Digital Factory Web & APK
         run: |
           mkdir -p _public
           cp -r app/src/main/assets/pwa/* _public/
-          cp index.html _public/index.html
+          mkdir -p _public/app/src/main/assets/pwa
+          cp -r app/src/main/assets/pwa/* _public/app/src/main/assets/pwa/
+          cp index.html _public/landing.html || true
           cp app/build/outputs/apk/debug/app-debug.apk _public/arcanum.apk
+          cp app/build/outputs/apk/debug/app-debug.apk _public/app/src/main/assets/pwa/arcanum.apk
           sha256sum _public/arcanum.apk > _public/arcanum.apk.sha256
           cat <<EOF > _public/build-info.json
           {
-            "version": "3.3.0",
-            "pipeline": "OMEGA PIPELINE v3.3",
+            "version": "3.9.0",
+            "pipeline": "OMEGA PIPELINE v3.9",
             "channel": "${{ github.event.inputs.target_channel || 'stable' }}",
             "branch": "${{ github.ref_name }}",
             "commit": "${{ github.sha }}",

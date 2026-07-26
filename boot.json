@@ -1,6 +1,6 @@
 {
   "engine": "Arcanum Universal Core Engine",
-  "version": "3.8.0",
+  "version": "3.9.0",
   "activeModules": [
     "battle",
     "cards",
@@ -30,6 +30,6 @@
     "uiSystem": "ArDesign System v3.4",
     "frontendArchitecture": "Arcanum Omega UI v3.5",
     "visualSystem": "Arcanum Visual Engine v3.7",
-    "metaPlatform": "Arcanum Meta Platform v3.8"
+    "metaPlatform": "Arcanum Meta Ecosystem v3.9"
   }
 }
