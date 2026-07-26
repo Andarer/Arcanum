@@ -11,8 +11,9 @@
 <body>
   <!-- System Status Bar -->
   <ar-status-bar id="ar-sys-status-bar">
-    <span>🌐 Arcanum OS v2.1</span>
-    <span id="ar-device-badge">⚡ Device: PWA</span>
+    <span>🌐 Arcanum OS v3.6</span>
+    <span id="ar-device-badge" style="cursor:pointer;" onclick="if(window.ArWindowManager) window.ArWindowManager.toggleMode()">📱 Layout: Tabs</span>
+    <span onclick="if(window.ArCommandPalette) window.ArCommandPalette.togglePalette()" style="cursor:pointer;background:rgba(197,160,89,0.2);padding:2px 8px;border-radius:10px;border:1px solid var(--gold-accent);">⌨️ Console (Ctrl+K)</span>
   </ar-status-bar>
 
   <!-- Header HUD -->
@@ -77,6 +78,9 @@
     </button>
     <button class="tab-btn" data-tab="github" onclick="switchTab('github')">
       <span class="icon">🐙</span> GitHub & Factory
+    </button>
+    <button class="tab-btn" data-tab="lab" onclick="switchTab('lab')">
+      <span class="icon">🧪</span> Frontend Lab
     </button>
   </nav>
 
@@ -373,6 +377,11 @@
     <section id="view-github" class="screen-view">
       <div id="github-dashboard-container"></div>
     </section>
+
+    <!-- Frontend Runtime Laboratory & Debugger -->
+    <section id="view-lab" class="screen-view">
+      <div id="view-lab-container"></div>
+    </section>
   </main>
 
   <!-- Modal -->
@@ -387,6 +396,9 @@
   <script src="./arcanum-atmosphere.js"></script>
   <script src="./arcanum-audio.js"></script>
   <script src="./arcanum-ui.js"></script>
+  <script src="./arcanum-frontend.js"></script>
+  <script src="./arcanum-visual.js"></script>
+  <script src="./arcanum-meta.js"></script>
   <script src="./arcanum-docs.js"></script>
   <script src="./arcanum-kernel.js"></script>
   <script src="./arcanum-package.js"></script>

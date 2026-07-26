@@ -1,12 +1,20 @@
 {
   "engine": "Arcanum Universal Core Engine",
-  "version": "0.5.0",
+  "version": "3.8.0",
   "activeModules": [
     "battle",
     "cards",
     "inventory",
     "quest",
-    "save_sync"
+    "save_sync",
+    "kernel",
+    "package",
+    "git_factory",
+    "ui_ardesign",
+    "frontend_omega_ui",
+    "frontend_runtime",
+    "visual_engine",
+    "meta_platform"
   ],
   "supportedClients": [
     "Android Native",
@@ -17,6 +25,11 @@
   "customSettings": {
     "defaultTheme": "Dark Fantasy Gold",
     "autoSave": "true",
-    "offlineMode": "enabled"
+    "offlineMode": "enabled",
+    "omegaPipeline": "v3.3.0",
+    "uiSystem": "ArDesign System v3.4",
+    "frontendArchitecture": "Arcanum Omega UI v3.5",
+    "visualSystem": "Arcanum Visual Engine v3.7",
+    "metaPlatform": "Arcanum Meta Platform v3.8"
   }
 }

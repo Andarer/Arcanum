@@ -102,6 +102,13 @@ function showToast(msg) {
 }
 
 function switchTab(tabName) {
+  if (window.ArWindowManager && window.ArWindowManager.windowMode) {
+    const activeBtn = document.querySelector(`.tab-btn[data-tab="${tabName}"]`);
+    const title = activeBtn ? activeBtn.innerText.trim() : tabName;
+    window.ArWindowManager.openAppletWindow(tabName, title);
+    return;
+  }
+
   document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
   document.querySelectorAll('.screen-view').forEach(view => view.classList.remove('active'));
 
@@ -951,12 +958,22 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-// Init & Spatial Navigation
+// Init & Splash Scene & Spatial Navigation
 window.addEventListener('DOMContentLoaded', () => {
   if (window.ArcanumEngine) {
     window.ArcanumEngine.boot();
   }
   loadGame();
+
+  // Trigger ArSplashEngine on initial boot
+  if (window.ArSplashEngine && !sessionStorage.getItem('arcanum_splash_shown')) {
+    sessionStorage.setItem('arcanum_splash_shown', 'true');
+    ArSplashEngine.showSplash(() => {
+      switchTab('home');
+    });
+  } else {
+    switchTab('home');
+  }
 
   // Update status bar device badge
   const deviceBadge = document.getElementById('ar-device-badge');
@@ -982,6 +999,5 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
-
-  switchTab('home');
 });
+

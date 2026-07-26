@@ -1,4 +1,4 @@
-const CACHE_NAME = 'arcanum-pwa-v3.2';
+const CACHE_NAME = 'arcanum-pwa-v3.8';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -7,6 +7,9 @@ const ASSETS_TO_CACHE = [
   './arcanum-atmosphere.js',
   './arcanum-audio.js',
   './arcanum-ui.js',
+  './arcanum-frontend.js',
+  './arcanum-visual.js',
+  './arcanum-meta.js',
   './arcanum-docs.js',
   './arcanum-kernel.js',
   './arcanum-package.js',
