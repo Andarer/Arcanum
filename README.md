@@ -1,12 +1,17 @@
-# Arcanum Evolution :: MULTIPLAYER & P2P NETWORKING ERA v4.4.0
+# Arcanum Evolution :: PROMPT ENGINE & METAVERSE ERA v4.5.0
 
-> **"ARCANUM EVOLUTION :: MULTIPLAYER, WEBRTC & P2P NETWORKING ARCHITECTURE. ONE ENGINE. INFINITE WORLDS."**
+> **"ARCANUM EVOLUTION :: MASTER PROMPT ENGINE, METAVERSE ARCHITECTURE & PROMPT STUDIO. ONE ENGINE. INFINITE WORLDS."**
 
-Arcanum Evolution is a self-contained, self-documenting, self-monitoring digital gaming operating system engineered for decadal longevity (1 to 10 year scale). It combines Card RPG combat, world creation tools, interactive specifications, digital twin metrics, microkernel maturity tracking, `.apkg` Package Format Manager, Living Universe Map, Explainability Engine, embedded Academy, Experimental Laboratory, Multi-Channel Version Switcher, 17-stage **OMEGA PIPELINE (`.github/workflows/pipeline.yml`)**, **ArDesign System (32 Web Components)**, **Floating Window Manager**, **Interactive Splash Scene**, **Command Palette (`Ctrl+K`)**, **Omega UI Architecture**, **Frontend Runtime Engine (`arcanum-frontend.js`)**, **Visual Engine (`arcanum-visual.js`)**, **Meta Ecosystem Engine (`arcanum-meta.js`)**, **Universal Game Engine (`arcanum-game-engine.js`)**, **Modular AI Subsystem (`arcanum-ai.js`)**, **Telemetry Subsystem (`arcanum-telemetry.js`)**, **Virtual IDE Subsystem (`arcanum-ide.js`)**, and **Multiplayer, WebRTC & P2P Networking Subsystem (`arcanum-network.js`)** featuring P2P Mesh Engine, Room Lobby Controller, Delta State Syncer, and Network Diagnostics Studio inside a 100% offline-first PWA primary client, backed by an Android native container shell.
+Arcanum Evolution is a self-contained, self-documenting, self-monitoring digital gaming operating system engineered for decadal longevity (1 to 10 year scale). It combines Card RPG combat, world creation tools, interactive specifications, digital twin metrics, microkernel maturity tracking, `.apkg` Package Format Manager, Living Universe Map, Explainability Engine, embedded Academy, Experimental Laboratory, Multi-Channel Version Switcher, 17-stage **OMEGA PIPELINE (`.github/workflows/pipeline.yml`)**, **ArDesign System (32 Web Components)**, **Floating Window Manager**, **Interactive Splash Scene**, **Command Palette (`Ctrl+K`)**, **Omega UI Architecture**, **Frontend Runtime Engine (`arcanum-frontend.js`)**, **Visual Engine (`arcanum-visual.js`)**, **Meta Ecosystem Engine (`arcanum-meta.js`)**, **Universal Game Engine (`arcanum-game-engine.js`)**, **Modular AI Subsystem (`arcanum-ai.js`)**, **Telemetry Subsystem (`arcanum-telemetry.js`)**, **Virtual IDE Subsystem (`arcanum-ide.js`)**, **Multiplayer, WebRTC & P2P Networking Subsystem (`arcanum-network.js`)**, and **Master Prompt Engine Subsystem (`arcanum-prompt-engine.js`)** featuring Prompt Architecture, Variable Templating, Token Estimator, and Prompt Studio UI inside a 100% offline-first PWA primary client, backed by an Android native container shell.
 
 ---
 
 ## 🌟 Key Architecture Capabilities
+
+- **🤖 Master Prompt Engine Subsystem (`arcanum-prompt-engine.js`)**:
+  - **Arcanum Prompt Engine** (`ArcanumPromptEngine`): Pre-compiled System Architecture, Card Generator, RPG Balancer, Lore Weaver, Code Auditor, and Vector Art prompts.
+  - **Variable Templating & Token Estimator**: Dynamic variable substitution (`{{player_level}}`, `{{gold}}`, `{{arch_score}}`) and token estimation (~3.8 chars/token).
+  - **Prompt Studio UI** (`ArcanumPromptStudioUI`): Interactive Prompt Library, Compiled Prompt Editor, Variable Controls, Execution Simulation Log, and Prompt Copy/Export tools in PWA tab `🤖 Промпты`.
 
 - **🌐 Multiplayer, WebRTC & P2P Networking Subsystem (`arcanum-network.js`)**:
   - **P2P Mesh Network Engine** (`ArcanumP2PNetworkEngine`): Cross-tab BroadcastChannel and WebRTC mesh manager with peer discovery.

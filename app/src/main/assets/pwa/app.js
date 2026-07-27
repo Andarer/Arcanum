@@ -170,6 +170,11 @@ function switchTab(tabName) {
       window.ArcanumNetworkStudioUI.renderStudio('network-studio-container');
     }
   }
+  if (tabName === 'prompts') {
+    if (window.ArcanumPromptStudioUI) {
+      window.ArcanumPromptStudioUI.render('prompt-studio-container');
+    }
+  }
 }
 
 // PVP Arena Engine

@@ -1,6 +1,6 @@
 {
   "engine": "Arcanum Universal Core Engine",
-  "version": "4.4.0",
+  "version": "4.5.0",
   "activeModules": [
     "battle",
     "cards",
@@ -19,7 +19,8 @@
     "ai_copilot",
     "telemetry_analytics",
     "virtual_ide",
-    "multiplayer_network"
+    "multiplayer_network",
+    "prompt_engine"
   ],
   "supportedClients": [
     "Android Native",
@@ -40,6 +41,7 @@
     "aiCopilot": "Arcanum AI Subsystem v4.1",
     "telemetryAnalytics": "Arcanum Telemetry Subsystem v4.2",
     "virtualIDE": "Arcanum Virtual IDE Subsystem v4.3",
-    "multiplayerNetwork": "Arcanum Multiplayer Network Subsystem v4.4"
+    "multiplayerNetwork": "Arcanum Multiplayer Network Subsystem v4.4",
+    "promptEngine": "Arcanum Master Prompt Engine Subsystem v4.5"
   }
 }

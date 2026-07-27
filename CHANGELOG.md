@@ -1,5 +1,16 @@
 # Arcanum Platform Changelog
 
+## [4.5.0] - 2026-07-27 (PROMPT ENGINE & METAVERSE ERA)
+### Added
+- **Master Prompt Subsystem (`arcanum-prompt-engine.js`)**: Universal Master Prompt Engine, Variable Templating System, Token Estimator, and Embedded Prompt Studio UI.
+- **Arcanum Prompt Engine (`ArcanumPromptEngine`)**: Pre-compiled System Architecture, Card Generator, RPG Balancer, Lore Weaver, Code Auditor, and Vector Art prompts.
+- **Variable Templating & Token Estimator**: Dynamic variable substitution (`{{player_level}}`, `{{gold}}`, `{{arch_score}}`) and token estimation engine (~3.8 chars/token).
+- **Prompt Studio UI (`ArcanumPromptStudioUI`)**: Embedded Prompt Library, Compiled Prompt Editor, Variable Controls, Execution Simulation Log, and Prompt Copy/Export tools in PWA tab `🤖 Промпты`.
+- **Console Terminal Command (`/prompt`)**: Command palette shortcut to launch and switch to Prompt Studio in `ArCommandPalette`.
+- **Updated Service Worker v4.5 (`sw.js`)**: Cache version updated to `arcanum-pwa-v4.5` with `arcanum-prompt-engine.js`.
+- **Updated Universal Boot Specification**: Updated `boot.json` to `4.5.0`.
+- **Local OMEGA PIPELINE Runner Audit**: Verified all 17 stages pass (100/100).
+
 ## [4.4.0] - 2026-07-27 (MULTIPLAYER & P2P NETWORKING ERA)
 ### Added
 - **Multiplayer, WebRTC & P2P Network Subsystem (`arcanum-network.js`)**: Peer-to-Peer Mesh Connection Manager, Room Lobby Controller, Delta State Syncer & Diagnostics Studio.

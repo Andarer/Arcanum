@@ -650,6 +650,11 @@
           resultText = `🌐 P2P Multiplayer & Network Studio активирована. Переход на вкладку Multiplayer...`;
           break;
 
+        case '/prompt':
+          if (window.switchTab) window.switchTab('prompts');
+          resultText = `🤖 Prompt Studio & Master Prompt Engine v4.5.0 активированы. Переход на вкладку Промпты...`;
+          break;
+
         case '/help':
           resultText = `
             Доступные команды Arcanum Console:<br/>
@@ -661,6 +666,7 @@
             - /telemetry<br/>
             - /ide<br/>
             - /network<br/>
+            - /prompt<br/>
             - /clear<br/>
             - /help
           `;
