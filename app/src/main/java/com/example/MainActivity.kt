@@ -80,11 +80,6 @@ fun ArcanumApp(viewModel: ArcanumViewModel) {
     val toastMessage by viewModel.toastMessage.collectAsStateWithLifecycle()
     val isLoading by viewModel.isLoading.collectAsStateWithLifecycle()
 
-    if (isLoading) {
-        LoadingScreen(message = "Инициализация Arcanum...")
-        return
-    }
-
     val snackbarHostState = remember { SnackbarHostState() }
 
     LaunchedEffect(toastMessage) {
@@ -220,11 +215,16 @@ fun ArcanumApp(viewModel: ArcanumViewModel) {
             )
         }
     ) { innerPadding ->
-        NavHost(
-            navController = navController,
-            startDestination = "home",
-            modifier = Modifier.padding(innerPadding)
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
         ) {
+            NavHost(
+                navController = navController,
+                startDestination = "home",
+                modifier = Modifier.fillMaxSize()
+            ) {
             composable("home") {
                 HomeScreen(
                     playerStats = playerStats,
@@ -395,7 +395,15 @@ fun ArcanumApp(viewModel: ArcanumViewModel) {
                 )
             }
         }
+
+        if (isLoading) {
+            LoadingScreen(
+                message = "Инициализация Arcanum...",
+                modifier = Modifier.fillMaxSize()
+            )
+        }
     }
+}
 }
 
 private fun isNetworkAvailable(context: Context): Boolean {

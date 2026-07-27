@@ -49,11 +49,16 @@ test -f app/src/main/assets/pwa/arcanum-core.js || { echo "Missing arcanum-core.
 test -f app/src/main/assets/pwa/arcanum-frontend.js || { echo "Missing arcanum-frontend.js"; exit 1; }
 test -f app/src/main/assets/pwa/arcanum-visual.js || { echo "Missing arcanum-visual.js"; exit 1; }
 test -f app/src/main/assets/pwa/arcanum-meta.js || { echo "Missing arcanum-meta.js"; exit 1; }
+test -f app/src/main/assets/pwa/arcanum-game-engine.js || { echo "Missing arcanum-game-engine.js"; exit 1; }
+test -f app/src/main/assets/pwa/arcanum-ai.js || { echo "Missing arcanum-ai.js"; exit 1; }
+test -f app/src/main/assets/pwa/arcanum-telemetry.js || { echo "Missing arcanum-telemetry.js"; exit 1; }
+test -f app/src/main/assets/pwa/arcanum-ide.js || { echo "Missing arcanum-ide.js"; exit 1; }
+test -f app/src/main/assets/pwa/arcanum-network.js || { echo "Missing arcanum-network.js"; exit 1; }
 echo -e "${GREEN}✔ [06_build_core] Passed${NC}"
 
 # Stage 07: Build PWA
 echo -e "\n${CYAN}[Stage 07/17] 07_build_pwa :: Service Worker & Assets Bundle${NC}"
-grep -q "arcanum-pwa-v3.9" app/src/main/assets/pwa/sw.js || { echo "Outdated SW version"; exit 1; }
+grep -q "arcanum-pwa-v4.4" app/src/main/assets/pwa/sw.js || { echo "Outdated SW version"; exit 1; }
 echo -e "${GREEN}✔ [07_build_pwa] Passed${NC}"
 
 # Stage 08: Build Android

@@ -55,45 +55,25 @@ class ArcanumNativeBridge(private val context: Context) {
 /**
  * PwaWebScreen renders the primary Arcanum PWA version directly inside a native WebView container.
  */
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PwaWebScreen(
     onBack: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text("ARCANUM PWA PRIMARY CLIENT", color = GoldLight) },
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Назад", tint = GoldAccent)
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.surface
-                )
-            )
+    AndroidView(
+        factory = { context ->
+            WebView(context).apply {
+                webViewClient = WebViewClient()
+                settings.javaScriptEnabled = true
+                settings.domStorageEnabled = true
+                settings.allowFileAccess = true
+                settings.cacheMode = WebSettings.LOAD_DEFAULT
+                addJavascriptInterface(ArcanumNativeBridge(context), "ArcanumNative")
+                loadUrl("file:///android_asset/pwa/index.html")
+            }
         },
         modifier = modifier
             .fillMaxSize()
             .testTag("pwa_web_screen")
-    ) { paddingValues ->
-        AndroidView(
-            factory = { context ->
-                WebView(context).apply {
-                    webViewClient = WebViewClient()
-                    settings.javaScriptEnabled = true
-                    settings.domStorageEnabled = true
-                    settings.allowFileAccess = true
-                    settings.cacheMode = WebSettings.LOAD_DEFAULT
-                    addJavascriptInterface(ArcanumNativeBridge(context), "ArcanumNative")
-                    loadUrl("file:///android_asset/pwa/index.html")
-                }
-            },
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-        )
-    }
+    )
 }

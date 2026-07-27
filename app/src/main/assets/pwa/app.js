@@ -150,6 +150,26 @@ function switchTab(tabName) {
       window.GitHubDigitalFactoryDashboard.renderDashboard();
     }
   }
+  if (tabName === 'ai') {
+    if (window.ArcanumCopilotStudioUI) {
+      window.ArcanumCopilotStudioUI.renderStudio('ai-copilot-studio-container');
+    }
+  }
+  if (tabName === 'telemetry') {
+    if (window.ArcanumTelemetryStudioUI) {
+      window.ArcanumTelemetryStudioUI.renderStudio('telemetry-studio-container');
+    }
+  }
+  if (tabName === 'ide') {
+    if (window.ArcanumIDEStudioUI) {
+      window.ArcanumIDEStudioUI.renderStudio('ide-studio-container');
+    }
+  }
+  if (tabName === 'network') {
+    if (window.ArcanumNetworkStudioUI) {
+      window.ArcanumNetworkStudioUI.renderStudio('network-studio-container');
+    }
+  }
 }
 
 // PVP Arena Engine

@@ -1,5 +1,6 @@
 package com.example.ui.screens
 
+import android.graphics.BitmapFactory
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
@@ -18,7 +19,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -115,10 +118,16 @@ fun ChestScreen(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
-                val chestPainter = runCatching { painterResource(id = R.drawable.img_magic_chest) }.getOrNull()
-                if (chestPainter != null) {
+                val context = LocalContext.current
+                val chestBitmap = remember(context) {
+                    runCatching {
+                        BitmapFactory.decodeResource(context.resources, R.drawable.img_magic_chest)?.asImageBitmap()
+                    }.getOrNull()
+                }
+
+                if (chestBitmap != null) {
                     Image(
-                        painter = chestPainter,
+                        bitmap = chestBitmap,
                         contentDescription = "Magic Chest Art",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier

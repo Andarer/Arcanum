@@ -1,0 +1,25 @@
+name: Arcanum Evolution :: PWA Bundle & Service Worker
+
+on:
+  push:
+    branches: [ main, master, develop, 'feature/*' ]
+  workflow_dispatch:
+
+jobs:
+  build_pwa:
+    name: Build PWA Offline Bundle
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify PWA Assets & Service Worker Cache
+        run: |
+          echo "=== Verifying PWA Assets & SW Cache ==="
+          test -f app/src/main/assets/pwa/index.html || exit 1
+          test -f app/src/main/assets/pwa/sw.js || exit 1
+          grep -q "arcanum-pwa-v4.3" app/src/main/assets/pwa/sw.js || exit 1
+          echo "SUCCESS: PWA offline bundle verified."
+      - name: Upload PWA Archive Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: arcanum-pwa-bundle
+          path: app/src/main/assets/pwa/

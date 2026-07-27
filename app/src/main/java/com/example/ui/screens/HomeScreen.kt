@@ -1,5 +1,6 @@
 package com.example.ui.screens
 
+import android.graphics.BitmapFactory
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -17,13 +18,16 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -33,6 +37,7 @@ import androidx.compose.ui.unit.sp
 import com.example.R
 import com.example.data.PlayerStatsEntity
 import com.example.data.QuestEntity
+import com.example.ui.components.CardArtGraphic
 import com.example.ui.theme.*
 
 data class MenuItemModel(
@@ -106,16 +111,22 @@ fun HomeScreen(
                 .height(190.dp)
         ) {
             Box(modifier = Modifier.fillMaxSize()) {
-                val heroPainter = runCatching { painterResource(id = R.drawable.img_arcanum_hero) }.getOrNull()
-                if (heroPainter != null) {
+                val context = LocalContext.current
+                val heroBitmap = remember(context) {
+                    runCatching {
+                        BitmapFactory.decodeResource(context.resources, R.drawable.img_arcanum_hero)?.asImageBitmap()
+                    }.getOrNull()
+                }
+
+                if (heroBitmap != null) {
                     Image(
-                        painter = heroPainter,
+                        bitmap = heroBitmap,
                         contentDescription = "Arcanum Hero Banner",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier.fillMaxSize()
                     )
                 } else {
-                    com.example.ui.components.CardArtGraphic(
+                    CardArtGraphic(
                         artKey = "dragon",
                         modifier = Modifier.fillMaxSize()
                     )

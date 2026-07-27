@@ -57,10 +57,8 @@ fun BattleScreen(
         Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             CircularProgressIndicator(color = GoldAccent)
         }
-        return
-    }
-
-    val listState = rememberLazyListState()
+    } else {
+        val listState = rememberLazyListState()
 
     // Smooth scroll to latest combat log entry
     LaunchedEffect(battleState.log.size) {
@@ -525,6 +523,7 @@ fun BattleScreen(
             }
         }
     }
+}
 }
 
 @Composable

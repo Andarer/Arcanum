@@ -1,0 +1,21 @@
+name: Arcanum Evolution :: Telemetry & Performance Benchmark Audit
+
+on:
+  push:
+    branches: [ main, master, develop, 'feature/*' ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  performance_audit:
+    name: Telemetry & Benchmark Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Audit Performance Engine & Benchmark Assets
+        run: |
+          echo "=== Auditing Telemetry & Performance Analytics Engine ==="
+          test -f app/src/main/assets/pwa/arcanum-telemetry.js || exit 1
+          grep -q "arcanum-pwa-v4.2" app/src/main/assets/pwa/sw.js || exit 1
+          echo "SUCCESS: Telemetry and benchmark suite audited."

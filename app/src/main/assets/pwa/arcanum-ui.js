@@ -620,6 +620,36 @@
           resultText = `✔ Полноэкранный режим переключен`;
           break;
 
+        case '/ai':
+          if (window.switchTab) window.switchTab('ai');
+          if (arg && window.ArcanumAIInstance) {
+            const res = window.ArcanumAIInstance.query(arg);
+            resultText = `🤖 [Arcanum AI Prompt: "${arg}"]<br/>${res.aiResponse.response || 'Prompt executed in AI Studio.'}`;
+          } else {
+            resultText = `🤖 AI Studio активирована. Переход на вкладку AI Copilot Studio...`;
+          }
+          break;
+
+        case '/telemetry':
+          if (window.switchTab) window.switchTab('telemetry');
+          if (window.ArcanumTelemetryInstance) {
+            const m = window.ArcanumTelemetryInstance.getMetrics();
+            resultText = `⚡ Telemetry Studio: FPS: ${m.fps} | Heap: ${m.memoryMB} MB | FrameTime: ${m.frameTime} ms | Status: ${m.status}`;
+          } else {
+            resultText = `⚡ Telemetry Studio активирована. Переход на вкладку...`;
+          }
+          break;
+
+        case '/ide':
+          if (window.switchTab) window.switchTab('ide');
+          resultText = `💻 Virtual IDE & Code Editor активирован. Переход на вкладку Code IDE...`;
+          break;
+
+        case '/network':
+          if (window.switchTab) window.switchTab('network');
+          resultText = `🌐 P2P Multiplayer & Network Studio активирована. Переход на вкладку Multiplayer...`;
+          break;
+
         case '/help':
           resultText = `
             Доступные команды Arcanum Console:<br/>
@@ -627,6 +657,10 @@
             - /window toggle<br/>
             - /audio toggle<br/>
             - /fullscreen<br/>
+            - /ai &lt;prompt&gt;<br/>
+            - /telemetry<br/>
+            - /ide<br/>
+            - /network<br/>
             - /clear<br/>
             - /help
           `;

@@ -1,6 +1,6 @@
 {
   "engine": "Arcanum Universal Core Engine",
-  "version": "3.9.0",
+  "version": "4.4.0",
   "activeModules": [
     "battle",
     "cards",
@@ -14,7 +14,12 @@
     "frontend_omega_ui",
     "frontend_runtime",
     "visual_engine",
-    "meta_platform"
+    "meta_platform",
+    "game_engine",
+    "ai_copilot",
+    "telemetry_analytics",
+    "virtual_ide",
+    "multiplayer_network"
   ],
   "supportedClients": [
     "Android Native",
@@ -30,6 +35,11 @@
     "uiSystem": "ArDesign System v3.4",
     "frontendArchitecture": "Arcanum Omega UI v3.5",
     "visualSystem": "Arcanum Visual Engine v3.7",
-    "metaPlatform": "Arcanum Meta Ecosystem v3.9"
+    "metaPlatform": "Arcanum Meta Ecosystem v3.9",
+    "gameEngine": "Arcanum Game Engine v4.0",
+    "aiCopilot": "Arcanum AI Subsystem v4.1",
+    "telemetryAnalytics": "Arcanum Telemetry Subsystem v4.2",
+    "virtualIDE": "Arcanum Virtual IDE Subsystem v4.3",
+    "multiplayerNetwork": "Arcanum Multiplayer Network Subsystem v4.4"
   }
 }

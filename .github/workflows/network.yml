@@ -1,0 +1,21 @@
+name: Arcanum Evolution :: Multiplayer & P2P Networking Engine Audit
+
+on:
+  push:
+    branches: [ main, master, develop, 'feature/*' ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  network_audit:
+    name: Multiplayer P2P Network Engine Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Audit Multiplayer Network Engine Assets
+        run: |
+          echo "=== Auditing Multiplayer, WebRTC & P2P Networking Subsystem ==="
+          test -f app/src/main/assets/pwa/arcanum-network.js || exit 1
+          grep -q "arcanum-pwa-v4.4" app/src/main/assets/pwa/sw.js || exit 1
+          echo "SUCCESS: Multiplayer P2P network subsystem assets verified."

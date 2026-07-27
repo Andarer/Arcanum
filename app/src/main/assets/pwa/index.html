@@ -11,7 +11,7 @@
 <body>
   <!-- System Status Bar -->
   <ar-status-bar id="ar-sys-status-bar">
-    <span>🌐 Arcanum OS v3.6</span>
+    <span>🌐 Arcanum OS v4.4</span>
     <span id="ar-device-badge" style="cursor:pointer;" onclick="if(window.ArWindowManager) window.ArWindowManager.toggleMode()">📱 Layout: Tabs</span>
     <span onclick="if(window.ArCommandPalette) window.ArCommandPalette.togglePalette()" style="cursor:pointer;background:rgba(197,160,89,0.2);padding:2px 8px;border-radius:10px;border:1px solid var(--gold-accent);">⌨️ Console (Ctrl+K)</span>
   </ar-status-bar>
@@ -78,6 +78,18 @@
     </button>
     <button class="tab-btn" data-tab="github" onclick="switchTab('github')">
       <span class="icon">🐙</span> GitHub & Factory
+    </button>
+    <button class="tab-btn" data-tab="ai" onclick="switchTab('ai')">
+      <span class="icon">🤖</span> AI Copilot Studio
+    </button>
+    <button class="tab-btn" data-tab="telemetry" onclick="switchTab('telemetry')">
+      <span class="icon">⚡</span> Telemetry
+    </button>
+    <button class="tab-btn" data-tab="ide" onclick="switchTab('ide')">
+      <span class="icon">💻</span> Code IDE
+    </button>
+    <button class="tab-btn" data-tab="network" onclick="switchTab('network')">
+      <span class="icon">🌐</span> Multiplayer
     </button>
     <button class="tab-btn" data-tab="lab" onclick="switchTab('lab')">
       <span class="icon">🧪</span> Frontend Lab
@@ -378,6 +390,26 @@
       <div id="github-dashboard-container"></div>
     </section>
 
+    <!-- AI Neural Copilot Studio & Reasoner -->
+    <section id="view-ai" class="screen-view">
+      <div id="ai-copilot-studio-container"></div>
+    </section>
+
+    <!-- Telemetry & Performance Analytics Studio -->
+    <section id="view-telemetry" class="screen-view">
+      <div id="telemetry-studio-container"></div>
+    </section>
+
+    <!-- Code IDE & Compiler Studio -->
+    <section id="view-ide" class="screen-view">
+      <div id="ide-studio-container"></div>
+    </section>
+
+    <!-- Multiplayer & P2P Network Studio -->
+    <section id="view-network" class="screen-view">
+      <div id="network-studio-container"></div>
+    </section>
+
     <!-- Frontend Runtime Laboratory & Debugger -->
     <section id="view-lab" class="screen-view">
       <div id="view-lab-container"></div>
@@ -403,6 +435,11 @@
   <script src="./arcanum-kernel.js"></script>
   <script src="./arcanum-package.js"></script>
   <script src="./arcanum-git.js"></script>
+  <script src="./arcanum-game-engine.js"></script>
+  <script src="./arcanum-ai.js"></script>
+  <script src="./arcanum-telemetry.js"></script>
+  <script src="./arcanum-ide.js"></script>
+  <script src="./arcanum-network.js"></script>
   <script src="./app.js"></script>
 </body>
 </html>

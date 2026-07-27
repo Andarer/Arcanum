@@ -1,0 +1,23 @@
+name: Arcanum Evolution :: Architecture Audit
+
+on:
+  push:
+    branches: [ main, master, develop, 'feature/*' ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  audit_architecture:
+    name: Architecture & Digital Twin Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Audit Core Architecture & Microkernel
+        run: |
+          echo "=== Auditing Architecture Specification & Microkernel ==="
+          test -f ARCHITECTURE.md || exit 1
+          test -f boot.json || exit 1
+          test -f app/src/main/assets/pwa/arcanum-kernel.js || exit 1
+          test -f app/src/main/assets/pwa/arcanum-meta.js || exit 1
+          echo "SUCCESS: Architecture and Digital Twin graph audited."

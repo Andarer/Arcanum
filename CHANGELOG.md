@@ -1,5 +1,69 @@
 # Arcanum Platform Changelog
 
+## [4.4.0] - 2026-07-27 (MULTIPLAYER & P2P NETWORKING ERA)
+### Added
+- **Multiplayer, WebRTC & P2P Network Subsystem (`arcanum-network.js`)**: Peer-to-Peer Mesh Connection Manager, Room Lobby Controller, Delta State Syncer & Diagnostics Studio.
+- **P2P Mesh Network Engine (`ArcanumP2PNetworkEngine`)**: Cross-tab and WebRTC mesh broadcast manager with peer identification and timestamped payload dispatch.
+- **Room Lobby Controller (`ArcanumRoomLobbyManager`)**: Room creation, room code generation (e.g. `ARC-1234`), peer discovery, and real-time roster synchronization.
+- **Delta State Sync Engine (`ArcanumStateSyncer`)**: Conflict-free delta state distribution for card battle actions (`PLAY_CARD`, `END_TURN`) and turn flow.
+- **Multiplayer Studio UI (`ArcanumNetworkStudioUI`)**: P2P Lobby manager, peer list roster, live delta state synchronization tester, and network traffic log viewer in PWA tab `🌐 Multiplayer`.
+- **Console Terminal Command (`/network`)**: Command palette shortcut to launch and switch to Multiplayer Studio in `ArCommandPalette`.
+- **Updated Service Worker v4.4 (`sw.js`)**: Cache version updated to `arcanum-pwa-v4.4` with `arcanum-network.js`.
+- **Updated Universal Boot Specification**: Updated `boot.json` to `4.4.0`.
+- **GitHub Actions Workflow (`network.yml`)**: Automated CI Multiplayer Network audit workflow.
+- **Local OMEGA PIPELINE Runner Audit**: Verified all 17 stages pass (100/100).
+
+## [4.3.0] - 2026-07-27 (VIRTUAL IDE & FILE SYSTEM ERA)
+### Added
+- **Virtual IDE & File System Subsystem (`arcanum-ide.js`)**: In-browser Virtual File System, Code Editor, Project Compiler & Hot-Reloader.
+- **Virtual File System Engine (`ArcanumVirtualFS`)**: Persistent virtual directory structure backed by LocalStorage/IndexedDB managing JSON configs, JS scripts, and Markdown docs.
+- **In-Browser Code Editor (`ArcanumCodeEditor`)**: Code editor with line numbers, HTML escaping, and real-time input event sync.
+- **In-Browser Compiler & Hot-Reloader (`ArcanumProjectCompiler`)**: Instant JSON schema validator and JS syntax error checker with hot-reloading into the live runtime.
+- **Code IDE Studio UI (`ArcanumIDEStudioUI`)**: Tabbed IDE workspace with file tree explorer, active file tab, and live diagnostics console embedded in PWA tab `💻 Code IDE`.
+- **Console Terminal Command (`/ide`)**: Command palette shortcut to launch and switch to Code IDE in `ArCommandPalette`.
+- **Updated Service Worker v4.3 (`sw.js`)**: Cache version updated to `arcanum-pwa-v4.3` with `arcanum-ide.js`.
+- **Updated Universal Boot Specification**: Updated `boot.json` to `4.3.0`.
+- **GitHub Actions Workflow (`ide.yml`)**: Automated CI Virtual IDE audit workflow.
+- **Local OMEGA PIPELINE Runner Audit**: Verified all 17 stages pass (100/100).
+
+## [4.2.0] - 2026-07-27 (TELEMETRY & PERFORMANCE ANALYTICS ERA)
+### Added
+- **Telemetry & Performance Engine (`arcanum-telemetry.js`)**: Realtime Telemetry, Hardware Benchmarking, and Optimization Subsystem.
+- **Realtime Telemetry Monitor (`ArcanumTelemetryEngine`)**: Realtime FPS, Frame Time, Heap Memory Usage, Network Latency, and IndexedDB Cache Monitor.
+- **Automated Benchmark Suite (`ArcanumBenchmarkSuite`)**: Stress testing engine for Canvas render speeds and 5,000 ECS entity spawning/physics ticks.
+- **Heuristic Optimization Advisor (`ArcanumOptimizationAdvisor`)**: Intelligent performance advisor analyzing frame rate drops and memory spikes.
+- **Telemetry Studio UI (`ArcanumTelemetryStudioUI`)**: Interactive performance dashboard with realtime metric gauges and automated benchmark buttons embedded in PWA.
+- **Console Terminal Command (`/telemetry`)**: Command palette shortcut to inspect runtime telemetry in `ArCommandPalette`.
+- **Updated Service Worker v4.2 (`sw.js`)**: Cache version updated to `arcanum-pwa-v4.2` with `arcanum-telemetry.js`.
+- **Updated Universal Boot Specification**: Updated `boot.json` to `4.2.0`.
+- **GitHub Actions Workflow (`performance.yml`)**: Automated CI performance audit workflow.
+- **Local OMEGA PIPELINE Runner Audit**: Verified all 17 stages pass (100/100).
+
+## [4.1.0] - 2026-07-27 (AI SUBSYSTEM & NEURAL COPILOT ERA)
+### Added
+- **Modular AI Subsystem Engine (`arcanum-ai.js`)**: Universal Modular AI Subsystem & Neural Copilot Engine powering local reasoning, search, and LLM integrations.
+- **Master AI Controller (`ArcanumAIEngine`)**: Central context manager orchestrating semantic queries, heuristic inference, and LLM providers.
+- **Local Semantic Vector Search Engine (`ArcanumSemanticIndex`)**: TF-IDF document and lore search engine across platform specifications, cards, and rules.
+- **Procedural Content & Balance Reasoner (`ArcanumRuleReasoner`)**: Heuristic rule generator for dynamic RPG cards, quests, and power balance checks.
+- **Multi-Provider LLM Adapter Framework (`ArcanumLLMAdapter`)**: Pluggable adapter layer supporting Local JS Rules and Gemini REST API integrations.
+- **AI Copilot Studio Laboratory UI (`ArcanumCopilotStudioUI`)**: Interactive Neural Copilot & Game Design Assistant Laboratory embedded in PWA.
+- **Updated Service Worker v4.1 (`sw.js`)**: Cache version updated to `arcanum-pwa-v4.1` with `arcanum-ai.js`.
+- **Updated Universal Boot Specification**: Updated `boot.json` to `4.1.0`.
+- **Local OMEGA PIPELINE Runner Audit**: Verified all 17 stages pass (100/100).
+
+## [4.0.0] - 2026-07-27 (GAME ENGINE & UNIVERSAL BUILDER PLATFORM ERA)
+### Added
+- **Universal Game Construction Engine (`arcanum-game-engine.js`)**: Universal Game Engine & RPG Sandbox Runtime powering cross-platform game building and execution.
+- **Master Game Engine Controller (`ArcanumGameEngine`)**: Central game loop, tick controller, entity management, and scene state machine.
+- **Lightweight Entity Component System (`ArcanumEntityComponentSystem`)**: High-performance ECS engine supporting Transform, Visual, Stats, ScriptableBehavior, Inventory, and Audio components.
+- **Visual RPG Scene Builder (`ArcanumSceneBuilder`)**: Interactive RPG scene canvas builder supporting spawn nodes, loot nodes, enemy bosses, and custom RPG mechanics.
+- **Declarative Rule Graph Engine (`ArcanumRuleGraphEngine`)**: Visual card/spell rule execution engine (Damage, Healing, Card Draw, FX summoning, Sound triggers).
+- **Game Package Publisher (`ArcanumGamePublisher`)**: Universal exporter packaging custom worlds, cards, rules, and scenes into `.apkg v4.0` bundles with SHA256 checksums.
+- **Game Studio Laboratory UI (`ArcanumGameStudioUI`)**: Interactive Game Builder Studio embedded in PWA for real-time playtesting, node placement, and spell execution.
+- **Updated Service Worker v4.0 (`sw.js`)**: Cache version updated to `arcanum-pwa-v4.0` with `arcanum-game-engine.js`.
+- **Updated Universal Boot Specification**: Updated `boot.json` to `4.0.0`.
+- **Local OMEGA PIPELINE Runner Audit**: Verified all 17 stages pass (100/100).
+
 ## [3.9.0] - 2026-07-26 (META ECOSYSTEM & OMEGA EVOLUTION ERA)
 ### Added
 - **Meta Ecosystem Engine (`arcanum-meta.js`)**: Self-organizing digital ecosystem with Meta Registry and Digital Passports.

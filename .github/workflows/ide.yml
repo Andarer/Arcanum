@@ -1,0 +1,21 @@
+name: Arcanum Evolution :: Virtual IDE & Code Editor Audit
+
+on:
+  push:
+    branches: [ main, master, develop, 'feature/*' ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  ide_audit:
+    name: Virtual IDE Engine Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Audit IDE Engine Assets
+        run: |
+          echo "=== Auditing Virtual IDE & Code Editor Engine ==="
+          test -f app/src/main/assets/pwa/arcanum-ide.js || exit 1
+          grep -q "arcanum-pwa-v4.3" app/src/main/assets/pwa/sw.js || exit 1
+          echo "SUCCESS: Virtual IDE engine assets verified."

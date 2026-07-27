@@ -1,12 +1,45 @@
-# Arcanum Evolution :: META ECOSYSTEM & OMEGA EVOLUTION ERA v3.9.0
+# Arcanum Evolution :: MULTIPLAYER & P2P NETWORKING ERA v4.4.0
 
-> **"ARCANUM EVOLUTION :: META ECOSYSTEM & OMEGA EVOLUTION ARCHITECTURE. ONE ENGINE. INFINITE WORLDS."**
+> **"ARCANUM EVOLUTION :: MULTIPLAYER, WEBRTC & P2P NETWORKING ARCHITECTURE. ONE ENGINE. INFINITE WORLDS."**
 
-Arcanum Evolution is a self-contained, self-documenting, self-monitoring digital gaming operating system engineered for decadal longevity (1 to 10 year scale). It combines Card RPG combat, world creation tools, interactive specifications, digital twin metrics, microkernel maturity tracking, `.apkg` Package Format Manager, Living Universe Map, Explainability Engine, embedded Academy, Experimental Laboratory, Multi-Channel Version Switcher, 17-stage **OMEGA PIPELINE (`.github/workflows/pipeline.yml`)**, **ArDesign System (32 Web Components)**, **Floating Window Manager**, **Interactive Splash Scene**, **Command Palette (`Ctrl+K`)**, **Omega UI Architecture**, **Frontend Runtime Engine (`arcanum-frontend.js`)**, **Visual Engine & Immersive System (`arcanum-visual.js`)**, and **Meta Ecosystem Engine (`arcanum-meta.js`)** featuring Meta Registry, Digital Passports Engine, Relationship Mapper, Object Lifecycle Engine, Global Search & Timeline, Self-Evolution Auditor, and Meta Dashboard inside a 100% offline-first PWA primary client, backed by an Android native container shell.
+Arcanum Evolution is a self-contained, self-documenting, self-monitoring digital gaming operating system engineered for decadal longevity (1 to 10 year scale). It combines Card RPG combat, world creation tools, interactive specifications, digital twin metrics, microkernel maturity tracking, `.apkg` Package Format Manager, Living Universe Map, Explainability Engine, embedded Academy, Experimental Laboratory, Multi-Channel Version Switcher, 17-stage **OMEGA PIPELINE (`.github/workflows/pipeline.yml`)**, **ArDesign System (32 Web Components)**, **Floating Window Manager**, **Interactive Splash Scene**, **Command Palette (`Ctrl+K`)**, **Omega UI Architecture**, **Frontend Runtime Engine (`arcanum-frontend.js`)**, **Visual Engine (`arcanum-visual.js`)**, **Meta Ecosystem Engine (`arcanum-meta.js`)**, **Universal Game Engine (`arcanum-game-engine.js`)**, **Modular AI Subsystem (`arcanum-ai.js`)**, **Telemetry Subsystem (`arcanum-telemetry.js`)**, **Virtual IDE Subsystem (`arcanum-ide.js`)**, and **Multiplayer, WebRTC & P2P Networking Subsystem (`arcanum-network.js`)** featuring P2P Mesh Engine, Room Lobby Controller, Delta State Syncer, and Network Diagnostics Studio inside a 100% offline-first PWA primary client, backed by an Android native container shell.
 
 ---
 
 ## 🌟 Key Architecture Capabilities
+
+- **🌐 Multiplayer, WebRTC & P2P Networking Subsystem (`arcanum-network.js`)**:
+  - **P2P Mesh Network Engine** (`ArcanumP2PNetworkEngine`): Cross-tab BroadcastChannel and WebRTC mesh manager with peer discovery.
+  - **Room Lobby Controller** (`ArcanumRoomLobbyManager`): Room creation, code generation (`ARC-1234`), and real-time player roster sync.
+  - **Delta State Sync Engine** (`ArcanumStateSyncer`): Conflict-free state delta synchronization for card battle moves and turn sequences.
+  - **Multiplayer Studio UI** (`ArcanumNetworkStudioUI`): Interactive room lobby manager, peer list roster, delta sync tester, and live network log.
+
+- **💻 Virtual IDE & Code Editor Subsystem (`arcanum-ide.js`)**:
+  - **Virtual File System Engine** (`ArcanumVirtualFS`): Persistent in-browser directory structure managing game configs, cards, scripts, and docs.
+  - **In-Browser Code Editor** (`ArcanumCodeEditor`): Code editor with line numbers, HTML escaping, and real-time input event sync.
+  - **Project Compiler & Hot-Reloader** (`ArcanumProjectCompiler`): Instant JSON schema validator and JS syntax checker with runtime hot-reloading.
+  - **Code IDE Studio UI** (`ArcanumIDEStudioUI`): Interactive IDE workspace with file tree explorer, file management tabs, and compiler diagnostics console.
+
+- **⚡ Telemetry & Performance Analytics Engine (`arcanum-telemetry.js`)**:
+  - **Realtime Telemetry Monitor** (`ArcanumTelemetryEngine`): Track real-time FPS, frame duration, heap memory consumption, network latency, and cache storage usage.
+  - **Automated Benchmark Suite** (`ArcanumBenchmarkSuite`): Stress test suite measuring Canvas rendering throughput and 5,000 ECS entity spawning/physics ticks.
+  - **Heuristic Optimization Advisor** (`ArcanumOptimizationAdvisor`): Intelligent heuristic analyzer generating performance recommendations and bottleneck resolutions.
+  - **Telemetry Studio Laboratory UI** (`ArcanumTelemetryStudioUI`): Interactive performance dashboard with live metric gauges, automated benchmark buttons, and optimization recommendations.
+
+- **🤖 AI Subsystem & Neural Copilot Engine (`arcanum-ai.js`)**:
+  - **Master AI Controller** (`ArcanumAIEngine`): Central context manager orchestrating semantic queries, heuristic inference, and LLM providers.
+  - **Local Semantic Vector Search** (`ArcanumSemanticIndex`): TF-IDF document and lore search engine across platform specifications, cards, and rules.
+  - **Procedural Content & Balance Reasoner** (`ArcanumRuleReasoner`): Heuristic rule generator for dynamic RPG cards, quests, and power balance checks.
+  - **Multi-Provider LLM Adapter Framework** (`ArcanumLLMAdapter`): Pluggable adapter layer supporting Local JS Rules and Gemini REST API integrations.
+  - **AI Copilot Studio Laboratory UI** (`ArcanumCopilotStudioUI`): Interactive Neural Copilot & Game Design Assistant Laboratory embedded in PWA.
+
+- **🎮 Universal Game Construction Engine (`arcanum-game-engine.js`)**:
+  - **Master Game Engine Controller** (`ArcanumGameEngine`): Central game loop, tick controller, entity manager, and scene state machine.
+  - **Entity Component System** (`ArcanumEntityComponentSystem`): High-performance ECS engine supporting Transform, Visual, Stats, ScriptableBehavior, Inventory, and Audio components.
+  - **Visual RPG Scene Builder** (`ArcanumSceneBuilder`): Interactive RPG scene canvas builder supporting spawn nodes, loot nodes, enemy bosses, and custom RPG mechanics.
+  - **Declarative Logic Rule Graph** (`ArcanumRuleGraphEngine`): Visual card/spell rule execution engine (Damage, Healing, Card Draw, FX summoning, Sound triggers).
+  - **Game Package Publisher** (`ArcanumGamePublisher`): Universal exporter packaging custom worlds, cards, rules, and scenes into `.apkg v4.0` bundles with SHA256 checksums.
+  - **Game Studio Laboratory UI** (`ArcanumGameStudioUI`): Interactive Game Builder Studio embedded in PWA for real-time playtesting, node placement, and spell execution.
 
 - **🌐 Meta Ecosystem Engine (`arcanum-meta.js`)**:
   - **Meta Registry** (`ArcanumMetaRegistry`): Auto-registers projects, modules, folders, files, components, services, APIs, routes, docs, assets, tests, releases, actions, pages, and AI providers with unique Meta IDs.
